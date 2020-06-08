@@ -1,34 +1,22 @@
-﻿# [在线显示](https://github.com/OS-Q/W41) 
-[![sites](OS-Q/OS-Q.png)](http://www.OS-Q.com)
-#### 归属定制显示：[M10](https://github.com/OS-Q/M10)
-#### 关于系统架构：[OS-Q](https://github.com/OS-Q/OS-Q)
-Edge-Q -> 体系 Q[1,4] -> 节点 M[1,12] -> 平台 W[1,52] -> 设备 D[1,365]
-## [节点描述](https://github.com/OS-Q/W41/wiki)
+﻿# [串口升级终端](https://github.com/OS-Q/W41)
 
-在线显示平台
+[![sites](http://182.61.61.133/link/resources/OSQ.png)](http://www.OS-Q.com)
 
-### [平台资源](https://github.com/OS-Q/W41)
+* Q[4] - M[12] - W[52] - D[365] - H[24] - N[60] - S[60]
+
+### [workspace描述](https://github.com/OS-Q/W41/wiki) 
+
+[串口升级终端](https://github.com/OS-Q/W41)用于支持设备通过串口进行IAP升级
+
+### [收录资源](https://github.com/OS-Q/)
 
 * [文档](docs/)
-* [资源](src/)
+* [工程](project/)
 
-### [平台结构](https://github.com/OS-Q/M10)
+### [相关硬件](https://github.com/SoCXin)
 
-* M10：[定制显示](https://github.com/OS-Q/M10)
-    * W40：[离线显示](https://github.com/OS-Q/W40)
-    * W41：[在线显示](https://github.com/OS-Q/W41)
-        * D281：[无线显示](https://github.com/OS-Q/D281)
-        * D282：[网络显示](https://github.com/OS-Q/D282)
-        * D283：[同步显示](https://github.com/OS-Q/D283)
-        * D284：[NULL](https://github.com/OS-Q/D284)
-        * D285：[NULL](https://github.com/OS-Q/D285)
-        * D286：[NULL](https://github.com/OS-Q/D286)
-        * D287：[NULL](https://github.com/OS-Q/D287)
-    * W42：[动态图像](https://github.com/OS-Q/W42)
-    * W43：[非标显示](https://github.com/OS-Q/W43)
+* [STM32F103](https://github.com/SoCXin/STM32F103)
+* [STM32F205](https://github.com/SoCXin/STM32F205)
+* [STM32F407](https://github.com/SoCXin/STM32F407)
 
-### [OS-Q : Operation System for edge devices](http://www.OS-Q.com/Edge/W41)
-####  2019-6-18
-
-
-
+### [OS-Q = Open Solutions | Open Source | Operating System ](http://www.OS-Q.com/W41)
