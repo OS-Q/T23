@@ -161,12 +161,12 @@ void IAP_Main_Menu(void)
 	}
 	while (1)
 	{
-		SerialPutString("\r\n\r\n IAP Main Menu (V0.3.0)\r\n");
+		SerialPutString("\r\n\r\n IAP Bootloader Menu (V0.4.0)\r\n");
 		SerialPutString(" update\r\n");
 		SerialPutString(" upload\r\n");
-		SerialPutString(" erase\r\n");
-		SerialPutString(" menu\r\n");
-		SerialPutString(" runapp\r\n");
+		SerialPutString(" delete\r\n");
+		SerialPutString(" config\r\n");
+		SerialPutString(" reboot\r\n");
 		if(FlashProtection != 0)//There is write protected
 		{
 			SerialPutString(" diswp\r\n");
@@ -218,7 +218,7 @@ int8_t IAP_Update(void)
 	Size = Ymodem_Receive(&tab_1024[0]);
 	if (Size > 0)
 	{
-		SerialPutString("\r\nFirmware Update Success!\r\n");
+		SerialPutString("\r\n\r\nFirmware Update Success!\r\n");
 		SerialPutString("\r\nFirmware Name: ");
 		SerialPutString(file_name);
 		Int2Str(Number, Size);
