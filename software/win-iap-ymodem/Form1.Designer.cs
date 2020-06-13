@@ -51,7 +51,6 @@
             this.btn_IAPMenu = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbx_PageSize = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -59,11 +58,11 @@
             // 
             // btn_Port
             // 
-            this.btn_Port.Location = new System.Drawing.Point(9, 92);
+            this.btn_Port.Location = new System.Drawing.Point(92, 93);
             this.btn_Port.Name = "btn_Port";
-            this.btn_Port.Size = new System.Drawing.Size(155, 32);
+            this.btn_Port.Size = new System.Drawing.Size(70, 30);
             this.btn_Port.TabIndex = 0;
-            this.btn_Port.Text = "打开";
+            this.btn_Port.Text = "打开串口";
             this.btn_Port.UseVisualStyleBackColor = true;
             this.btn_Port.Click += new System.EventHandler(this.btn_Port_Click);
             // 
@@ -79,9 +78,9 @@
             // progressBar1
             // 
             this.progressBar1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.progressBar1.Location = new System.Drawing.Point(5, 380);
+            this.progressBar1.Location = new System.Drawing.Point(251, 363);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(718, 22);
+            this.progressBar1.Size = new System.Drawing.Size(471, 22);
             this.progressBar1.TabIndex = 2;
             // 
             // serialPort1
@@ -117,9 +116,6 @@
             this.cbx_Baud.FormattingEnabled = true;
             this.cbx_Baud.Items.AddRange(new object[] {
             "Custom",
-            "110",
-            "300",
-            "600",
             "1200",
             "2400",
             "4800",
@@ -130,7 +126,7 @@
             "56000",
             "57600",
             "115200",
-            "128000",
+            "130000",
             "256000"});
             this.cbx_Baud.Location = new System.Drawing.Point(65, 58);
             this.cbx_Baud.Name = "cbx_Baud";
@@ -140,14 +136,14 @@
             // txb_FilePath
             // 
             this.txb_FilePath.BackColor = System.Drawing.SystemColors.Window;
-            this.txb_FilePath.Location = new System.Drawing.Point(81, 345);
+            this.txb_FilePath.Location = new System.Drawing.Point(251, 336);
             this.txb_FilePath.Name = "txb_FilePath";
-            this.txb_FilePath.Size = new System.Drawing.Size(492, 21);
+            this.txb_FilePath.Size = new System.Drawing.Size(471, 21);
             this.txb_FilePath.TabIndex = 7;
             // 
             // btn_SelectFile
             // 
-            this.btn_SelectFile.Location = new System.Drawing.Point(11, 344);
+            this.btn_SelectFile.Location = new System.Drawing.Point(183, 335);
             this.btn_SelectFile.Name = "btn_SelectFile";
             this.btn_SelectFile.Size = new System.Drawing.Size(64, 23);
             this.btn_SelectFile.TabIndex = 8;
@@ -165,7 +161,7 @@
             this.groupBox1.Controls.Add(this.cbx_Baud);
             this.groupBox1.Location = new System.Drawing.Point(4, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(174, 177);
+            this.groupBox1.Size = new System.Drawing.Size(174, 133);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "端口操作";
@@ -173,9 +169,9 @@
             // 
             // btn_Clear
             // 
-            this.btn_Clear.Location = new System.Drawing.Point(10, 139);
+            this.btn_Clear.Location = new System.Drawing.Point(12, 93);
             this.btn_Clear.Name = "btn_Clear";
-            this.btn_Clear.Size = new System.Drawing.Size(64, 28);
+            this.btn_Clear.Size = new System.Drawing.Size(70, 30);
             this.btn_Clear.TabIndex = 16;
             this.btn_Clear.Text = "清除窗口";
             this.btn_Clear.UseVisualStyleBackColor = true;
@@ -186,7 +182,7 @@
             this.groupBox2.Controls.Add(this.tbx_show);
             this.groupBox2.Location = new System.Drawing.Point(184, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(538, 328);
+            this.groupBox2.Size = new System.Drawing.Size(538, 330);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "串口数据";
@@ -207,7 +203,7 @@
             // 
             this.btn_Erase.Location = new System.Drawing.Point(92, 54);
             this.btn_Erase.Name = "btn_Erase";
-            this.btn_Erase.Size = new System.Drawing.Size(70, 28);
+            this.btn_Erase.Size = new System.Drawing.Size(70, 30);
             this.btn_Erase.TabIndex = 12;
             this.btn_Erase.Text = "擦除固件";
             this.btn_Erase.UseVisualStyleBackColor = true;
@@ -217,7 +213,7 @@
             // 
             this.btn_Upload.Location = new System.Drawing.Point(12, 20);
             this.btn_Upload.Name = "btn_Upload";
-            this.btn_Upload.Size = new System.Drawing.Size(70, 28);
+            this.btn_Upload.Size = new System.Drawing.Size(70, 30);
             this.btn_Upload.TabIndex = 13;
             this.btn_Upload.Text = "读取固件";
             this.btn_Upload.UseVisualStyleBackColor = true;
@@ -227,7 +223,7 @@
             // 
             this.btn_RunApp.Location = new System.Drawing.Point(12, 54);
             this.btn_RunApp.Name = "btn_RunApp";
-            this.btn_RunApp.Size = new System.Drawing.Size(70, 28);
+            this.btn_RunApp.Size = new System.Drawing.Size(70, 30);
             this.btn_RunApp.TabIndex = 14;
             this.btn_RunApp.Text = "重启设备";
             this.btn_RunApp.UseVisualStyleBackColor = true;
@@ -237,7 +233,7 @@
             // 
             this.btn_Config.Location = new System.Drawing.Point(92, 88);
             this.btn_Config.Name = "btn_Config";
-            this.btn_Config.Size = new System.Drawing.Size(70, 28);
+            this.btn_Config.Size = new System.Drawing.Size(70, 30);
             this.btn_Config.TabIndex = 18;
             this.btn_Config.Text = "配置参数";
             this.btn_Config.UseVisualStyleBackColor = true;
@@ -249,7 +245,7 @@
             this.btn_Update.ForeColor = System.Drawing.SystemColors.Desktop;
             this.btn_Update.Location = new System.Drawing.Point(92, 20);
             this.btn_Update.Name = "btn_Update";
-            this.btn_Update.Size = new System.Drawing.Size(70, 28);
+            this.btn_Update.Size = new System.Drawing.Size(70, 30);
             this.btn_Update.TabIndex = 15;
             this.btn_Update.Text = "更新固件";
             this.btn_Update.UseVisualStyleBackColor = false;
@@ -261,7 +257,7 @@
             this.btn_IAPMenu.ForeColor = System.Drawing.SystemColors.Desktop;
             this.btn_IAPMenu.Location = new System.Drawing.Point(12, 88);
             this.btn_IAPMenu.Name = "btn_IAPMenu";
-            this.btn_IAPMenu.Size = new System.Drawing.Size(70, 28);
+            this.btn_IAPMenu.Size = new System.Drawing.Size(70, 30);
             this.btn_IAPMenu.TabIndex = 16;
             this.btn_IAPMenu.Text = "读取配置";
             this.btn_IAPMenu.UseVisualStyleBackColor = true;
@@ -275,9 +271,9 @@
             this.groupBox3.Controls.Add(this.btn_Upload);
             this.groupBox3.Controls.Add(this.btn_Config);
             this.groupBox3.Controls.Add(this.btn_Erase);
-            this.groupBox3.Location = new System.Drawing.Point(4, 205);
+            this.groupBox3.Location = new System.Drawing.Point(4, 141);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(174, 125);
+            this.groupBox3.Size = new System.Drawing.Size(174, 244);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "数据操作";
@@ -289,32 +285,21 @@
             this.cbx_PageSize.Items.AddRange(new object[] {
             "32",
             "64",
-            "128",
+            "130",
             "256",
             "512",
             "1024"});
-            this.cbx_PageSize.Location = new System.Drawing.Point(647, 344);
+            this.cbx_PageSize.Location = new System.Drawing.Point(183, 364);
             this.cbx_PageSize.Name = "cbx_PageSize";
-            this.cbx_PageSize.Size = new System.Drawing.Size(59, 20);
+            this.cbx_PageSize.Size = new System.Drawing.Size(64, 20);
             this.cbx_PageSize.TabIndex = 10;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(585, 348);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 12);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "分包长度:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(729, 407);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(729, 392);
             this.Controls.Add(this.cbx_PageSize);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btn_SelectFile);
@@ -359,7 +344,6 @@
         private System.Windows.Forms.Button btn_IAPMenu;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cbx_PageSize;
-        private System.Windows.Forms.Label label1;
     }
 }
 

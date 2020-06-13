@@ -23,14 +23,10 @@ namespace win_iap_ymodem
             set
             {
                 hasOpenPort = value;
-                if (hasOpenPort)
-                    openPortBtn();
-                else
-                    closePortBtn();
-                if (hasSelectBin)
-                    openControlBtn();
-                else
-                    closeControlBtn();
+                if (hasOpenPort) openPortBtn();
+                else closePortBtn();
+                if (hasSelectBin) openControlBtn();
+                else  closeControlBtn();
             }
         }
         private bool hasSelectBin = false;
@@ -40,10 +36,10 @@ namespace win_iap_ymodem
             set
             {
                 hasSelectBin = value;
-                if (hasOpenPort && hasSelectBin)
-                    openControlBtn();
-                else
-                    closeControlBtn();
+                if (hasOpenPort) openPortBtn();
+                else closePortBtn();
+                if (hasSelectBin) openControlBtn();
+                else  closeControlBtn();
             }
         }
 
@@ -74,7 +70,7 @@ namespace win_iap_ymodem
             EnumComportfromReg(cbx_Port);
             serialPort1.Encoding = Encoding.GetEncoding("gb2312");//串口接收编码GB2312码
             System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;//忽略程序跨越线程运行导致的错误.没有此句将会产生错误
-            cbx_Baud.SelectedIndex = 13;
+            cbx_Baud.SelectedIndex = 10;
             cbx_PageSize.SelectedIndex = 4;
         }
 
@@ -84,12 +80,12 @@ namespace win_iap_ymodem
         /// </summary>
         private void openPortBtn()
         {
-            // btn_Update.Enabled = true;
+            btn_Update.Enabled = false;
             btn_Upload.Enabled = true;
             btn_Erase.Enabled = true;
             btn_IAPMenu.Enabled = true;
             btn_RunApp.Enabled = true;
-            // btn_Config.Enabled = true;
+            btn_Config.Enabled = false;
         }
         private void openControlBtn()
         {
@@ -106,13 +102,12 @@ namespace win_iap_ymodem
         /// </summary>
         private void closePortBtn()
         {
-            // btn_Update.Enabled = false;
+            btn_Update.Enabled = false;
             btn_Upload.Enabled = false;
             btn_Erase.Enabled = false;
             btn_IAPMenu.Enabled = false;
             btn_RunApp.Enabled = false;
-            // btn_Config.Enabled = false;
-
+            btn_Config.Enabled = false;
         }
         private void closeControlBtn()
         {
@@ -195,7 +190,7 @@ namespace win_iap_ymodem
                 try
                 {
                     serialPort1.Close();
-                    btn_Port.Text = "打开";
+                    btn_Port.Text = "打开串口";
                     HasOpenPort = false;
                 }
                 catch (Exception ex)
@@ -214,7 +209,7 @@ namespace win_iap_ymodem
                 try
                 {
                     serialPort1.Open();
-                    btn_Port.Text = "关闭";
+                    btn_Port.Text = "关闭串口";
                     HasOpenPort = true;
                 }
                 catch (Exception ex)
