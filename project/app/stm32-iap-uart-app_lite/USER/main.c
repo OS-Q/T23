@@ -22,7 +22,7 @@ int main(void)
 		else
 		{
 			times++;
-			if(times%2000==0)
+			if(times%20==0)
 			{
 				LED0=!LED0;				//闪烁LED(PC13),提示系统正在运行.
 				// printf("Qitas\r\n");
