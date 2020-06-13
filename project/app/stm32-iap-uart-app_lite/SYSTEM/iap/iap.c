@@ -56,7 +56,7 @@ void IAP_Handle(u8 * cmd)
 	}
 	else
 	{
-		//printf("指令有误\r\n");
+		printf("指令有误\r\n");
 		NVIC_SystemReset();	
 	}
 }

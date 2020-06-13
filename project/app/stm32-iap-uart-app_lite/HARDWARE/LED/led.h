@@ -3,7 +3,7 @@
 #include "stm32f10x.h"
 
 //LED端口定义
-#define LED0 PCout(13)// PA8
+#define LED0 PCout(13)
 
 void LED_Init(void);//初始化
 

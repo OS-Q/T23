@@ -3,18 +3,6 @@
 #include "sys.h" 
 #include "delay.h"
 
-//////////////////////////////////////////////////////////////////////////////////	 
-//本程序只供学习使用，未经作者许可，不得用于其它任何用途
-//Mini STM32开发板
-//按键输入 驱动代码		   
-//技术论坛:www.openedv.com
-//修改日期:2011/11/28 
-//版本：V1.1
-//版权所有，盗版必究。
-//Copyright(C) ALIENTEK  2009-2019
-//All rights reserved
-//********************************************************************************
- 
 void KEY_Init(void) //IO初始化
 {
  	GPIO_InitTypeDef GPIO_InitStructure;
@@ -27,11 +15,9 @@ void KEY_Init(void) //IO初始化
 	//init GPIOA.0	  下拉输入
 	GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_0;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD; 
-
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
-		 
-
+	GPIO_Init(GPIOA, &GPIO_InitStructure);		
 }
+
 u8 KEY_Scan(void)
 {	 
 	static u8 key_up=1;//按键按松开标志	

@@ -95,7 +95,6 @@ uint16_t IAP_ReadFlag(void)
 void IAP_USART_Init(void)
 {
     USART_InitTypeDef USART_InitStructure;
-
     USART_InitStructure.USART_BaudRate = 115200;
     USART_InitStructure.USART_WordLength = USART_WordLength_8b;
     USART_InitStructure.USART_StopBits = USART_StopBits_1;
@@ -118,7 +117,7 @@ int8_t IAP_RunApp(void)
 {
 	if (((*(__IO uint32_t*)ApplicationAddress) & 0x2FFE0000 ) == 0x20000000)
 	{   
-		SerialPutString("\r\n Run to app.\r\n");
+		// SerialPutString("\r\n Run to app.\r\n");
 		JumpAddress = *(__IO uint32_t*) (ApplicationAddress + 4);
 		Jump_To_Application = (pFunction) JumpAddress;
 		__set_MSP(*(__IO uint32_t*) ApplicationAddress);
@@ -162,7 +161,7 @@ void IAP_Main_Menu(void)
 	}
 	while (1)
 	{
-		SerialPutString("\r\n IAP Main Menu (V0.3.0)\r\n");
+		SerialPutString("\r\n\r\n IAP Main Menu (V0.3.0)\r\n");
 		SerialPutString(" update\r\n");
 		SerialPutString(" upload\r\n");
 		SerialPutString(" erase\r\n");
@@ -219,11 +218,11 @@ int8_t IAP_Update(void)
 	Size = Ymodem_Receive(&tab_1024[0]);
 	if (Size > 0)
 	{
-		SerialPutString("\r\n Update Over!\r\n");
-		SerialPutString(" Name: ");
+		SerialPutString("\r\nFirmware Update Success!\r\n");
+		SerialPutString("\r\nFirmware Name: ");
 		SerialPutString(file_name);
 		Int2Str(Number, Size);
-		SerialPutString("\r\n Size: ");
+		SerialPutString("\r\nFirmware Size: ");
 		SerialPutString(Number);
 		SerialPutString(" Bytes.\r\n");
 		return 0;
