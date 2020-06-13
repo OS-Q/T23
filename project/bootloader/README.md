@@ -1,5 +1,5 @@
 ﻿
-## STM32串口IAP的boot部分使用说明
+## STM32 IAP 
 
 1. 该项目实现通过PC的串口对STM32系列MCU进行IAP。
 
@@ -8,13 +8,6 @@
     - 运行在STM32平台的Boot；
     - 运行在STM32平台的App(我做了两个，一个是支持usmart的重量版，一个是很简洁的轻量版)；
     - 运行在Windows平台的上位机操作工具。
-
-3. 本篇是属于运行在STM32平台的Boot部分，另外两篇介绍请参阅：
-
-    - [windows平台操作工具](https://github.com/havenxie/winapp-iap-uart)
-    - [STM32平台的APP(支持USMART的版本)](https://github.com/havenxie/stm32-iap-uart-app)     
-	- [STM32平台的APP(轻量版)](https://github.com/havenxie/stm32-iap-uart-app_lite)
-    
 
 4. 该部分作为Boot可运行在多个STM32F10x系列：
     
@@ -125,7 +118,7 @@
 
 8. 打开上位机工具，通过串口和MCU进行连接。
 
-9. 选择需要烧入用户应用程序（[应用程序app的设置请点击此处](https://github.com/havenxie/stm32-iap-uart-app) ）。
+9. 选择需要烧入用户应用程序。
 
 10. 根据你的需求选择更新app、读出app、擦除app、app进入iap模式、复位运行app等操作。
 
@@ -167,7 +160,7 @@
 
 ## 更新说明：
 
-> 代码时隔一年多再次更新，增加了通过后备寄存器来存储各种状态标志，使用方法见下：
+> 通过后备寄存器来存储各种状态标志，使用方法见下：
 
 选择iap_config.h文件中的`define USE_BKP_SAVE_FLAG     1  //1:使用后备寄存器存储flag标志，0:使用flash存储flag标志（之前的版本就是这样）`
 注意app部分的USE_BKP_SAVE_FLAG值要和boot保持一致
