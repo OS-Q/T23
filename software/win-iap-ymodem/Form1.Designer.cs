@@ -46,6 +46,7 @@
             this.btn_Erase = new System.Windows.Forms.Button();
             this.btn_Upload = new System.Windows.Forms.Button();
             this.btn_RunApp = new System.Windows.Forms.Button();
+            this.btn_Config = new System.Windows.Forms.Button();
             this.btn_Update = new System.Windows.Forms.Button();
             this.btn_IAPMenu = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -139,14 +140,14 @@
             // txb_FilePath
             // 
             this.txb_FilePath.BackColor = System.Drawing.SystemColors.Window;
-            this.txb_FilePath.Location = new System.Drawing.Point(71, 345);
+            this.txb_FilePath.Location = new System.Drawing.Point(81, 345);
             this.txb_FilePath.Name = "txb_FilePath";
             this.txb_FilePath.Size = new System.Drawing.Size(492, 21);
             this.txb_FilePath.TabIndex = 7;
             // 
             // btn_SelectFile
             // 
-            this.btn_SelectFile.Location = new System.Drawing.Point(3, 344);
+            this.btn_SelectFile.Location = new System.Drawing.Point(11, 344);
             this.btn_SelectFile.Name = "btn_SelectFile";
             this.btn_SelectFile.Size = new System.Drawing.Size(64, 23);
             this.btn_SelectFile.TabIndex = 8;
@@ -193,19 +194,20 @@
             // tbx_show
             // 
             this.tbx_show.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.tbx_show.Location = new System.Drawing.Point(0, 18);
+            this.tbx_show.Location = new System.Drawing.Point(6, 18);
             this.tbx_show.Multiline = true;
             this.tbx_show.Name = "tbx_show";
             this.tbx_show.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbx_show.Size = new System.Drawing.Size(538, 310);
+            this.tbx_show.Size = new System.Drawing.Size(526, 302);
             this.tbx_show.TabIndex = 9;
+            this.tbx_show.TextChanged += new System.EventHandler(this.tbx_show_TextChanged);
             this.tbx_show.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbx_show_KeyPress);
             // 
             // btn_Erase
             // 
-            this.btn_Erase.Location = new System.Drawing.Point(12, 54);
+            this.btn_Erase.Location = new System.Drawing.Point(92, 54);
             this.btn_Erase.Name = "btn_Erase";
-            this.btn_Erase.Size = new System.Drawing.Size(71, 28);
+            this.btn_Erase.Size = new System.Drawing.Size(70, 28);
             this.btn_Erase.TabIndex = 12;
             this.btn_Erase.Text = "擦除固件";
             this.btn_Erase.UseVisualStyleBackColor = true;
@@ -213,9 +215,9 @@
             // 
             // btn_Upload
             // 
-            this.btn_Upload.Location = new System.Drawing.Point(92, 20);
+            this.btn_Upload.Location = new System.Drawing.Point(12, 20);
             this.btn_Upload.Name = "btn_Upload";
-            this.btn_Upload.Size = new System.Drawing.Size(71, 28);
+            this.btn_Upload.Size = new System.Drawing.Size(70, 28);
             this.btn_Upload.TabIndex = 13;
             this.btn_Upload.Text = "读取固件";
             this.btn_Upload.UseVisualStyleBackColor = true;
@@ -223,21 +225,31 @@
             // 
             // btn_RunApp
             // 
-            this.btn_RunApp.Location = new System.Drawing.Point(12, 88);
+            this.btn_RunApp.Location = new System.Drawing.Point(12, 54);
             this.btn_RunApp.Name = "btn_RunApp";
-            this.btn_RunApp.Size = new System.Drawing.Size(71, 28);
+            this.btn_RunApp.Size = new System.Drawing.Size(70, 28);
             this.btn_RunApp.TabIndex = 14;
-            this.btn_RunApp.Text = "运行程序";
+            this.btn_RunApp.Text = "重启设备";
             this.btn_RunApp.UseVisualStyleBackColor = true;
             this.btn_RunApp.Click += new System.EventHandler(this.btn_RunApp_Click);
+            // 
+            // btn_Config
+            // 
+            this.btn_Config.Location = new System.Drawing.Point(92, 88);
+            this.btn_Config.Name = "btn_Config";
+            this.btn_Config.Size = new System.Drawing.Size(70, 28);
+            this.btn_Config.TabIndex = 18;
+            this.btn_Config.Text = "配置参数";
+            this.btn_Config.UseVisualStyleBackColor = true;
+            this.btn_Config.Click += new System.EventHandler(this.btn_Config_Click);
             // 
             // btn_Update
             // 
             this.btn_Update.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btn_Update.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btn_Update.Location = new System.Drawing.Point(12, 20);
+            this.btn_Update.Location = new System.Drawing.Point(92, 20);
             this.btn_Update.Name = "btn_Update";
-            this.btn_Update.Size = new System.Drawing.Size(71, 28);
+            this.btn_Update.Size = new System.Drawing.Size(70, 28);
             this.btn_Update.TabIndex = 15;
             this.btn_Update.Text = "更新固件";
             this.btn_Update.UseVisualStyleBackColor = false;
@@ -245,11 +257,13 @@
             // 
             // btn_IAPMenu
             // 
-            this.btn_IAPMenu.Location = new System.Drawing.Point(92, 54);
+            this.btn_IAPMenu.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btn_IAPMenu.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btn_IAPMenu.Location = new System.Drawing.Point(12, 88);
             this.btn_IAPMenu.Name = "btn_IAPMenu";
-            this.btn_IAPMenu.Size = new System.Drawing.Size(71, 28);
+            this.btn_IAPMenu.Size = new System.Drawing.Size(70, 28);
             this.btn_IAPMenu.TabIndex = 16;
-            this.btn_IAPMenu.Text = "进入菜单";
+            this.btn_IAPMenu.Text = "读取配置";
             this.btn_IAPMenu.UseVisualStyleBackColor = true;
             this.btn_IAPMenu.Click += new System.EventHandler(this.btn_IAPMenu_Click);
             // 
@@ -259,13 +273,15 @@
             this.groupBox3.Controls.Add(this.btn_RunApp);
             this.groupBox3.Controls.Add(this.btn_IAPMenu);
             this.groupBox3.Controls.Add(this.btn_Upload);
+            this.groupBox3.Controls.Add(this.btn_Config);
             this.groupBox3.Controls.Add(this.btn_Erase);
-            this.groupBox3.Location = new System.Drawing.Point(4, 206);
+            this.groupBox3.Location = new System.Drawing.Point(4, 205);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(174, 125);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "固件操作";
+            this.groupBox3.Text = "数据操作";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // cbx_PageSize
             // 
@@ -277,7 +293,7 @@
             "256",
             "512",
             "1024"});
-            this.cbx_PageSize.Location = new System.Drawing.Point(645, 344);
+            this.cbx_PageSize.Location = new System.Drawing.Point(647, 344);
             this.cbx_PageSize.Name = "cbx_PageSize";
             this.cbx_PageSize.Size = new System.Drawing.Size(59, 20);
             this.cbx_PageSize.TabIndex = 10;
@@ -336,6 +352,7 @@
         private System.Windows.Forms.Button btn_Erase;
         private System.Windows.Forms.Button btn_Upload;
         private System.Windows.Forms.Button btn_RunApp;
+        private System.Windows.Forms.Button btn_Config;
         private System.Windows.Forms.TextBox tbx_show;
         private System.Windows.Forms.Button btn_Update;
         private System.Windows.Forms.Button btn_Clear;

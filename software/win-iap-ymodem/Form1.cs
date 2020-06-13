@@ -23,7 +23,11 @@ namespace win_iap_ymodem
             set
             {
                 hasOpenPort = value;
-                if (hasOpenPort && hasSelectBin)
+                if (hasOpenPort)
+                    openPortBtn();
+                else
+                    closePortBtn();
+                if (hasSelectBin)
                     openControlBtn();
                 else
                     closeControlBtn();
@@ -78,29 +82,48 @@ namespace win_iap_ymodem
         /// <summary>
         /// enabled all button
         /// </summary>
+        private void openPortBtn()
+        {
+            // btn_Update.Enabled = true;
+            btn_Upload.Enabled = true;
+            btn_Erase.Enabled = true;
+            btn_IAPMenu.Enabled = true;
+            btn_RunApp.Enabled = true;
+            // btn_Config.Enabled = true;
+        }
         private void openControlBtn()
         {
             btn_Update.Enabled = true;
-            btn_Upload.Enabled = true;
-            //btn_Erase.Enabled = true;
-            btn_IAPMenu.Enabled = true;
-            btn_RunApp.Enabled = true;
+            // btn_Upload.Enabled = true;
+            // btn_Erase.Enabled = true;
+            // btn_IAPMenu.Enabled = true;
+            // btn_RunApp.Enabled = true;
+            btn_Config.Enabled = true;
         }
-
 
         /// <summary>
         /// disabled all button
         /// </summary>
+        private void closePortBtn()
+        {
+            // btn_Update.Enabled = false;
+            btn_Upload.Enabled = false;
+            btn_Erase.Enabled = false;
+            btn_IAPMenu.Enabled = false;
+            btn_RunApp.Enabled = false;
+            // btn_Config.Enabled = false;
+
+        }
         private void closeControlBtn()
         {
             btn_Update.Enabled = false;
-            btn_Upload.Enabled = false;
-            //btn_Erase.Enabled = false;
-            btn_IAPMenu.Enabled = false;
-            btn_RunApp.Enabled = false;
+            // btn_Upload.Enabled = false;
+            // btn_Erase.Enabled = false;
+            // btn_IAPMenu.Enabled = false;
+            // btn_RunApp.Enabled = false;
+            btn_Config.Enabled = false;
 
         }
-
 
         /// <summary>
         /// the button for select bin file or hex file.
@@ -361,7 +384,7 @@ namespace win_iap_ymodem
         private void btn_Upload_Click(object sender, EventArgs e)
         {
             //to do.
-            MessageBox.Show("该功能还没有做");
+            MessageBox.Show("该功能待完善");
         }
 
 
@@ -379,6 +402,10 @@ namespace win_iap_ymodem
         private void btn_RunApp_Click(object sender, EventArgs e)
         {
             serialPort1.Write("runapp\r\n");
+        }
+        private void btn_Config_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("config\r\n");
         }
 
         /// <summary>
@@ -430,6 +457,9 @@ namespace win_iap_ymodem
                         break;
                     case "runapp":
                         btn_RunApp_Click(null, null);
+                        break;
+                    case "config":
+                        btn_Config_Click(null, null);
                         break;
                     default:
                         serialPort1.Write(sendCmd + "\r\n");
@@ -681,6 +711,26 @@ namespace win_iap_ymodem
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Config_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbx_show_TextChanged(object sender, EventArgs e)
         {
 
         }
