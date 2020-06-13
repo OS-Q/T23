@@ -1,0 +1,9 @@
+list/
+obj/
+bin/
+listing/
+RTE/
+DebugConfig/
+.pio/
+.vscode/
+

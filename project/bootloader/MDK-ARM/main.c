@@ -23,10 +23,10 @@ int main(void)
 					IAP_WriteFlag(INIT_FLAG_DATA);
 				break;
 			case UPLOAD_FLAG_DATA:// upload app state
-//				if( !IAP_Upload())
-//					IAP_WriteFlag(APPRUN_FLAG_DATA);
-//				else 
-//					IAP_WriteFlag(INIT_FLAG_DATA);
+				if( !IAP_Upload())
+					IAP_WriteFlag(APPRUN_FLAG_DATA);
+				else 
+					IAP_WriteFlag(INIT_FLAG_DATA);
 				break;
 			case ERASE_FLAG_DATA:// erase app state
 				IAP_Erase();

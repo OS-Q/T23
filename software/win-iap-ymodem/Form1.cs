@@ -361,7 +361,7 @@ namespace win_iap_ymodem
         private void btn_Upload_Click(object sender, EventArgs e)
         {
             //to do.
-            MessageBox.Show("不好意思，这个功能还没有做。");
+            MessageBox.Show("该功能还没有做");
         }
 
 
@@ -670,6 +670,19 @@ namespace win_iap_ymodem
             return true;
         }
 
+        private void lbl_Pass_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

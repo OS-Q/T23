@@ -2,6 +2,23 @@
 *.d
 *.uvgui.*
 JLinkSettings.ini
+list/
+obj/
+listing/
+RTE/
+DebugConfig/
+OUTPUT/
+.pio/
+.vscode/
+*.crf
+*.dep
+*.map
+*.hex
+*.bin
+*.bak
+*.txt
+*.TXT
+*.uvgu*
 
 # Object files
 *.o

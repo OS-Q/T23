@@ -108,7 +108,7 @@ void IAP_USART_Init(void)
 
 void IAP_Init(void)
 {
-    IAP_USART_Init();
+  IAP_USART_Init();
 #if (USE_BKP_SAVE_FLAG == 1)
 	RCC_APB1PeriphClockCmd(RCC_APB1ENR_PWREN | RCC_APB1ENR_BKPEN , ENABLE); 
 #endif
@@ -162,7 +162,7 @@ void IAP_Main_Menu(void)
 	}
 	while (1)
 	{
-		SerialPutString("\r\n IAP Main Menu (V 0.2.0)\r\n");
+		SerialPutString("\r\n IAP Main Menu (V0.3.0)\r\n");
 		SerialPutString(" update\r\n");
 		SerialPutString(" upload\r\n");
 		SerialPutString(" erase\r\n");
@@ -283,7 +283,7 @@ int8_t IAP_Erase(void)
 {
 	uint8_t erase_cont[3] = {0};
 	Int2Str(erase_cont, FLASH_IMAGE_SIZE / PAGE_SIZE);
-	SerialPutString(" @");//要有空格，避免bug
+	SerialPutString(" @");													//要有空格，避免bug
 	SerialPutString(erase_cont);
 	SerialPutString("@");
 	if(EraseSomePages(FLASH_IMAGE_SIZE, 1))
