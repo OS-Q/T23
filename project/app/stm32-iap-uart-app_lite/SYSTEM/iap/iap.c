@@ -33,31 +33,35 @@ void IAP_Init(void)
 	NVIC_SetVectorTable(STM32_FLASH_BASE, IAP_FLASH_SIZE);//设置中断向量表
 }
 
-void IAP_Handle(u8 * cmd)
+void IAP_Handle(u8 *mark,u8 * cmd)
 {
-	if(strcmp((char *)cmd, "update") == 0)
-	{
-		IAP_WriteFlag(UPDATE_FLAG_DATA);
-		NVIC_SystemReset();
-	}
-	else if(strcmp((char *)cmd, "erase") == 0)
-	{
-		IAP_WriteFlag(ERASE_FLAG_DATA);
-		NVIC_SystemReset();		
-	}
-	else if(strcmp((char *)cmd, "menu") == 0)
-	{
-		IAP_WriteFlag(INIT_FLAG_DATA);
-		NVIC_SystemReset();	
-	}
-	else if(strcmp((char *)cmd, "runapp") == 0)//reset
-	{
-		NVIC_SystemReset();	
-	}
-	else
-	{
-		printf("指令有误\r\n");
-		NVIC_SystemReset();	
+	if(mark[0]&0x80)
+	{					 
+		mark[0]=0;
+		if(strcmp((char *)cmd, "update") == 0)
+		{
+			IAP_WriteFlag(UPDATE_FLAG_DATA);
+			NVIC_SystemReset();
+		}
+		else if(strcmp((char *)cmd, "erase") == 0)
+		{
+			IAP_WriteFlag(ERASE_FLAG_DATA);
+			NVIC_SystemReset();		
+		}
+		else if(strcmp((char *)cmd, "menu") == 0)
+		{
+			IAP_WriteFlag(INIT_FLAG_DATA);
+			NVIC_SystemReset();	
+		}
+		else if(strcmp((char *)cmd, "runapp") == 0)//reset
+		{
+			NVIC_SystemReset();	
+		}
+		else
+		{
+			printf("指令有误\r\n");
+			NVIC_SystemReset();	
+		}
 	}
 }
 

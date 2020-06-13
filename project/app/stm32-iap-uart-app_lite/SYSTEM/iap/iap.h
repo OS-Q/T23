@@ -28,5 +28,5 @@
 void IAP_WriteFlag(uint16_t flag);
 uint16_t IAP_ReadFlag(void);
 void IAP_Init(void);
-void IAP_Handle(u8 * cmd);
+void IAP_Handle(u8 *mark,u8 * cmd);
 #endif
