@@ -28,25 +28,21 @@ u8 KEY_Scan(void)
 		delay_ms(10);//去抖动 
 		key_up=0;
 		if(KEY0==0)
-		{
-	 
-			 GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);
+		{	 
+			GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);
 			return 1;
 		}
 		else if(KEY1==0)
-		{
-	 	 
+		{	 	 
 	     	GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);
 			return 2;
 		}
 		else if(KEY2==1)
-		{
-	 
+		{	 
 	    	GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);
 			return 3;
 		}
 	}else if(KEY0==1&&KEY1==1&&KEY2==0)key_up=1; 	    
- 
  	GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);
-	return 0;// 无按键按下
+	return 0;
 }
