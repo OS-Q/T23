@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>..\OUTPUT\</OutputDirectory>
-          <OutputName>Demo</OutputName>
+          <OutputName>APP</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -82,8 +82,8 @@
           <AfterMake>
             <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>1</RunUserProg2>
-            <UserProg1Name>.\..\Binary\hex2bin.exe .\..\OUTPUT\Demo.hex</UserProg1Name>
-            <UserProg2Name>.\..\Binary\hex2dfu.exe -t  .\..\OUTPUT\Demo.hex</UserProg2Name>
+            <UserProg1Name>.\..\Binary\hex2bin.exe .\..\OUTPUT\APP.hex</UserProg1Name>
+            <UserProg2Name>.\..\Binary\hex2dfu.exe -t  .\..\OUTPUT\APP.hex</UserProg2Name>
             <UserProg1Dos16Mode>1</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>1</UserProg2Dos16Mode>
             <nStopA1X>0</nStopA1X>

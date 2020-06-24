@@ -17,9 +17,9 @@ int main(void)
 		IAP_Handle(&USART_RX_STA,USART_RX_BUF);
 		times++;
 		delay_ms(10);  
-		if(times%30==0){
-			LED0=!LED0;//闪烁LED(PC13),提示系统正在运行.
-			printf("qitas test\r\n");
+		if(times%50==0){
+			LED0=!LED0;			//闪烁LED(PC13),提示系统正在运行.
+			printf("qitas test app lite\r\n");
 		}
 	}	 
 }
