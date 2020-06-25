@@ -1,26 +1,26 @@
 
-## STM32串口IAP的Application部分使用说明
+## 串口IAP的App
 
 > [在上一篇STM32串口IAP的boot部分使用说明](https://github.com/havenxie/stm32-iap-uart-boot)中我们提到了app部分，这一篇我们来简单说一下app的基本配置使用。
 
 1. 该项目实现通过PC的串口对STM32系列MCU进行IAP。
 
 2. 该项目包含三个部分（三套代码）：
-    
+
     - 运行在STM32平台的Boot；
     - 运行在STM32平台的App(我做了两个，这个是支持usmart的重量版，另一个是很[简洁的轻量版](https://github.com/havenxie/stm32-iap-uart-app_lite))；
     - 运行在Windows平台的上位机操作工具。
 
 3. 本篇是属于运行在STM32平台的Application部分（usmart版本），另外两篇介绍请参阅：
-    
+
     - [windows平台操作工具](https://github.com/havenxie/winapp-iap-uart)
-    - [STM32平台的Bootloader](https://github.com/havenxie/stm32-iap-uart-boot)    
-	
+    - [STM32平台的Bootloader](https://github.com/havenxie/stm32-iap-uart-boot)
+
 4. 这套代码支持正点原子的[usmart](http://www.openedv.com/posts/list/877.htm)，有了这个功能我们可以很好的用到串口调试。
 
 *****
 
-## 工程目录结构 
+## 工程目录结构
 
 - "Binary": 包含将hex文件转换成bin文件的工具，你也可以不用这个工具，直接用Keil安装目录中的hex转bin工具。我在这里用了这个工具是因为每个人的安装目录不同，不可能做到一致，直接将转换工具放在项目中可以保证每个人都会有一致的效果。（这里我已经设置好了，使用者不必关心）
 
@@ -37,21 +37,21 @@
 - "SYSTEM": 程序运行的一些必要代码文件
     + "delay": 延时相关的代码
     + "iap": iap功能实现的相关代码
-    + "sys": 
+    + "sys":
     + "usart": 串口功能实现的相关代码
 
 - "USER": KEIL的工程文件及user文件
-            
+
 - "USMART": usmart功能实现代码
 
 - "keilkill": 用来清除中间文件的bat脚本，双击运行即可
 
 - "README": 自述文件
- 
-      
- 
-      
-***** 
+
+
+
+
+*****
 
 ## 使用APP工程的方法：
 
@@ -85,12 +85,12 @@
 *****
 
 ## 上位机工具配置：
-    
+
     + 数据位长度 = 8 Bits
     + 1位停止位
     + 无校验位
     + 波特率 = 115200 baud（根据你的项目需求选择合适的波特率）
-    + 硬件流控: None 
+    + 硬件流控: None
     + “包长度”指的是数据传输过程中每一包的长度。可根据你的需要选择合适的包长度。
 
 *****
@@ -98,7 +98,7 @@
 ## 版本说明：
 
 - 用户使用master版本即可。
-	
+
 ## 更新说明：
 
 > 代码时隔一年多再次更新，增加了通过后备寄存器来存储各种状态标志，使用方法见下：

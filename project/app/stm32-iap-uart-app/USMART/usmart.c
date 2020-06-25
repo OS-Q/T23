@@ -3,38 +3,29 @@
 #include "stmflash.h"
 #include "sys.h"
 #include "iap.h"
-//////////////////////////////////////////////////////////////////////////////////	 
-//本程序只供学习使用，未经作者许可，不得用于其它任何用途
-//ALIENTEK STM32开发板	   
-//正点原子@ALIENTEK
-//技术论坛:www.openedv.com 
-//版本：V3.1
-//版权所有，盗版必究。
-//Copyright(C) 正点原子 2011-2021
-//All rights reserved
-//********************************************************************************
+
 //升级说明
 //V1.4
 //增加了对参数为string类型的函数的支持.适用范围大大提高.
 //优化了内存占用,静态内存占用为79个字节@10个参数.动态适应数字及字符串长度
-//V2.0 
+//V2.0
 //1,修改了list指令,打印函数的完整表达式.
 //2,增加了id指令,打印每个函数的入口地址.
 //3,修改了参数匹配,支持函数参数的调用(输入入口地址).
-//4,增加了函数名长度宏定义.	
-//V2.1 20110707		 
+//4,增加了函数名长度宏定义.
+//V2.1 20110707
 //1,增加dec,hex两个指令,用于设置参数显示进制,及执行进制转换.
 //注:当dec,hex不带参数的时候,即设定显示参数进制.当后跟参数的时候,即执行进制转换.
 //如:"dec 0XFF" 则会将0XFF转为255,由串口返回.
 //如:"hex 100" 	则会将100转为0X64,由串口返回
 //2,新增usmart_get_cmdname函数,用于获取指令名字.
-//V2.2 20110726	
+//V2.2 20110726
 //1,修正了void类型参数的参数统计错误.
 //2,修改数据显示格式默认为16进制.
 //V2.3 20110815
 //1,去掉了函数名后必须跟"("的限制.
 //2,修正了字符串参数中不能有"("的bug.
-//3,修改了函数默认显示参数格式的修改方式. 
+//3,修改了函数默认显示参数格式的修改方式.
 //V2.4 20110905
 //1,修改了usmart_get_cmdname函数,增加最大参数长度限制.避免了输入错误参数时的死机现象.
 //2,增加USMART_ENTIM2_SCAN宏定义,用于配置是否使用TIM2定时执行scan函数.
@@ -44,7 +35,7 @@
 //V2.6 20111009
 //1,增加了read_addr和write_addr两个函数.可以利用这两个函数读写内部任意地址(必须是有效地址).更加方便调试.
 //2,read_addr和write_addr两个函数可以通过设置USMART_USE_WRFUNS为来使能和关闭.
-//3,修改了usmart_strcmp,使其规范化.			  
+//3,修改了usmart_strcmp,使其规范化.
 //V2.7 20111024
 //1,修正了返回值16进制显示时不换行的bug.
 //2,增加了函数是否有返回值的判断,如果没有返回值,则不会显示.有返回值时才显示其返回值.
@@ -77,7 +68,7 @@ u8 *sys_cmd_tab[]=
 	"erase",//擦除除了Bootloader之外的flash区域
 	"menu",//进入iap菜单
 	"runapp"//执行app程序
-};	    
+};
 
 void help_cmd(void)
 {
@@ -85,7 +76,7 @@ void help_cmd(void)
 #if USMART_USE_HELP
 			printf("------------------------USMART V 0.1.4---------------------- \r\n\n");
 			printf("通过USMART你可以使用串口助手调用固件里面的任何函数,并执行.\r\n");
-			printf("你可以随意更改函数的输入参数(支持数字(10/16进制)、字符串、函数入\r\n");	  
+			printf("你可以随意更改函数的输入参数(支持数字(10/16进制)、字符串、函数入\r\n");
 			printf("口地址等作为参数),单个函数最多支持10个输入参数,并支持函数返回值显示.\r\n\n");
 			printf("USMART有12个系统命令(后5个主要由BootLoader和App共同支持):\r\n");
 			printf("?:      获取帮助信息\r\n");
@@ -100,7 +91,7 @@ void help_cmd(void)
 			printf("erase:  擦除除Bootloader之外的Flash区域\r\n");
 			printf("menu:   跳转回IAP Menu\r\n");
 			printf("runapp: 运行User App\r\n");
-			printf("请按照程序编写格式输入函数名及参数并以回车键结束.\r\n");    
+			printf("请按照程序编写格式输入函数名及参数并以回车键结束.\r\n");
 			printf("------------------------------------------------ \r\n\n");
 #else
 			printf("指令失效\r\n");
@@ -114,16 +105,16 @@ u8 usmart_sys_cmd_exe(u8 *str)
 	u8 sfname[MAX_FNAME_LEN];//存放本地函数名
 	u8 pnum;
 	u8 rval;
-	u32 res;  
+	u32 res;
 	res=usmart_get_cmdname(str,sfname,&i,MAX_FNAME_LEN);//得到指令及指令长度
-	if(res)return USMART_FUNCERR;//错误的指令 
-	str+=i;	 	 			    
+	if(res)return USMART_FUNCERR;//错误的指令
+	str+=i;
 	for(i=0;i<sizeof(sys_cmd_tab)/4;i++)//支持的系统指令
 	{
 		if(usmart_strcmp(sfname,sys_cmd_tab[i])==0)break;
 	}
 	switch(i)
-	{					   
+	{
 		case 0:
 		case 1://帮助指令
 			help_cmd();
@@ -133,13 +124,13 @@ u8 usmart_sys_cmd_exe(u8 *str)
 			printf("-------------------------函数清单--------------------------- \r\n");
 			for(i=0;i<usmart_dev.fnum;i++)printf("%s\r\n",usmart_dev.funs[i].name);
 			printf("\r\n");
-			break;	 
+			break;
 		case 3://查询ID
 			printf("\r\n");
 			printf("-------------------------函数 ID --------------------------- \r\n");
 			for(i=0;i<usmart_dev.fnum;i++)
 			{
-				usmart_get_fname((u8*)usmart_dev.funs[i].name,sfname,&pnum,&rval);//得到本地函数名 
+				usmart_get_fname((u8*)usmart_dev.funs[i].name,sfname,&pnum,&rval);//得到本地函数名
 				printf("%s id is:\r\n0X%08X\r\n",sfname,usmart_dev.funs[i].func); //显示ID
 			}
 			printf("\r\n");
@@ -149,7 +140,7 @@ u8 usmart_sys_cmd_exe(u8 *str)
 			usmart_get_aparm(str,sfname,&i);
 			if(i==0)//参数正常
 			{
-				i=usmart_str2num(sfname,&res);	   	//记录该参数	
+				i=usmart_str2num(sfname,&res);	   	//记录该参数
 				if(i==0)						  	//进制转换功能
 				{
 					printf("HEX:0X%X\r\n",res);	   	//转为16进制
@@ -157,18 +148,18 @@ u8 usmart_sys_cmd_exe(u8 *str)
 				else 				   				//参数显示设定功能
 				{
 					printf("16进制参数显示!\r\n");
-					usmart_dev.sptype=SP_TYPE_HEX;  
+					usmart_dev.sptype=SP_TYPE_HEX;
 				}
 
 			}else return USMART_PARMERR;			//参数错误.
-			printf("\r\n"); 
+			printf("\r\n");
 			break;
 		case 5://dec指令
 			printf("\r\n");
 			usmart_get_aparm(str,sfname,&i);
 			if(i==0)//参数正常
 			{
-				i=usmart_str2num(sfname,&res);	   	//记录该参数	
+				i=usmart_str2num(sfname,&res);	   	//记录该参数
 				if(i==0)						   	//进制转换功能
 				{
 					printf("DEC:%lu\r\n",res);	   	//转为10进制
@@ -176,18 +167,18 @@ u8 usmart_sys_cmd_exe(u8 *str)
 				else 				   				//参数显示设定功能
 				{
 					printf("10进制参数显示!\r\n");
-					usmart_dev.sptype=SP_TYPE_DEC;  
+					usmart_dev.sptype=SP_TYPE_DEC;
 				}
 
-			}else return USMART_PARMERR;			//参数错误. 
-			printf("\r\n"); 
-			break;	 
+			}else return USMART_PARMERR;			//参数错误.
+			printf("\r\n");
+			break;
 		case 6://runtime指令,设置是否显示函数执行时间
 			printf("\r\n");
 			usmart_get_aparm(str,sfname,&i);
 			if(i==0)//参数正常
 			{
-				i=usmart_str2num(sfname,&res);	   		//记录该参数	
+				i=usmart_str2num(sfname,&res);	   		//记录该参数
 				if(i==0)						   		//读取指定地址数据功能
 				{
 					if(USMART_ENTIMX_SCAN==0)printf("\r\nError! \r\nTo EN RunTime function,Please set USMART_ENTIMX_SCAN = 1 first!\r\n");//报错
@@ -195,12 +186,12 @@ u8 usmart_sys_cmd_exe(u8 *str)
 					{
 						usmart_dev.runtimeflag=res;
 						if(usmart_dev.runtimeflag)printf("Run Time Calculation ON\r\n");
-						else printf("Run Time Calculation OFF\r\n"); 
+						else printf("Run Time Calculation OFF\r\n");
 					}
-				}else return USMART_PARMERR;   			//未带参数,或者参数错误	 
- 			}else return USMART_PARMERR;				//参数错误. 
-			printf("\r\n"); 
-			break;	
+				}else return USMART_PARMERR;   			//未带参数,或者参数错误
+ 			}else return USMART_PARMERR;				//参数错误.
+			printf("\r\n");
+			break;
 		case 7://system software reset
 			//NVIC_SetVectorTable(0X8000000, 0X0000);//设置中断向量表
 			NVIC_SystemReset();
@@ -217,7 +208,7 @@ u8 usmart_sys_cmd_exe(u8 *str)
 			IAP_WriteFlag(ERASE_FLAG_DATA);
 			NVIC_SystemReset();
 			break;
-		case 11://Iap Menu 
+		case 11://Iap Menu
 			IAP_WriteFlag(INIT_FLAG_DATA);
 			NVIC_SystemReset();
 			break;
@@ -241,10 +232,10 @@ u8 usmart_sys_cmd_exe(u8 *str)
 //需要根据所移植到的MCU的定时器参数进行修改
 void usmart_reset_runtime(void)
 {
-	TIM2->SR&=~(1<<0);	//清除中断标志位 
+	TIM2->SR&=~(1<<0);	//清除中断标志位
 	TIM2->ARR=0XFFFF;	//将重装载值设置到最大
 	TIM2->CNT=0;		//清空定时器的CNT
-	usmart_dev.runtime=0;	
+	usmart_dev.runtime=0;
 }
 //获得runtime时间
 //返回值:执行时间,单位:0.1ms,最大延时时间为定时器CNT值的2倍*0.1ms
@@ -258,17 +249,17 @@ u32 usmart_get_runtime(void)
 	usmart_dev.runtime+=TIM2->CNT;
 	return usmart_dev.runtime;		//返回计数值
 }
-//下面这两个函数,非USMART函数,放到这里,仅仅方便移植. 
-//定时器2中断服务程序	 
+//下面这两个函数,非USMART函数,放到这里,仅仅方便移植.
+//定时器2中断服务程序
 void TIM2_IRQHandler(void)
-{ 		    		  			    
+{
 	if(TIM2->SR&0X0001)//溢出中断
-	{ 
-		usmart_dev.scan();	//执行usmart扫描	
+	{
+		usmart_dev.scan();	//执行usmart扫描
 		TIM2->CNT=0;		//清空定时器的CNT
 		TIM2->ARR=1000;		//恢复原来的设置
-	}				   
-	TIM2->SR&=~(1<<0);//清除中断标志位 	    
+	}
+	TIM2->SR&=~(1<<0);//清除中断标志位
 }
 //使能定时器2,使能中断.
 void Timer2_Init(u16 arr,u16 psc)
@@ -276,15 +267,15 @@ void Timer2_Init(u16 arr,u16 psc)
     TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
 
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE); //TIM2时钟使能 
- 
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE); //TIM2时钟使能
+
 	//TIM2初始化设置
  	TIM_TimeBaseStructure.TIM_Period = arr; //设置在下一个更新事件装入活动的自动重装载寄存器周期的值	 计数到5000为500ms
-	TIM_TimeBaseStructure.TIM_Prescaler =psc; //设置用来作为TIMx时钟频率除数的预分频值  10Khz的计数频率  
+	TIM_TimeBaseStructure.TIM_Prescaler =psc; //设置用来作为TIMx时钟频率除数的预分频值  10Khz的计数频率
 	TIM_TimeBaseStructure.TIM_ClockDivision = 0; //设置时钟分割:TDTS = Tck_tim
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //TIM向上计数模式
 	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure); //根据TIM_TimeBaseInitStruct中指定的参数初始化TIMx的时间基数单位
- 
+
 	TIM_ITConfig( TIM2, TIM_IT_Update|TIM_IT_Trigger, ENABLE );//TIM2 允许更新，触发中断
 
 	//TIM2中断分组配置
@@ -294,7 +285,7 @@ void Timer2_Init(u16 arr,u16 psc)
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ通道被使能
 	NVIC_Init(&NVIC_InitStructure);  //根据NVIC_InitStruct中指定的参数初始化外设NVIC寄存器
 
-	TIM_Cmd(TIM2, ENABLE);  //使能TIM2 								 
+	TIM_Cmd(TIM2, ENABLE);  //使能TIM2
 }
 #endif
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -306,31 +297,31 @@ void usmart_init(u8 sysclk)
 	Timer2_Init(1000,(u32)sysclk*100-1);//分频,时钟为10K ,100ms中断一次,注意,计数频率必须为10Khz,以和runtime单位(0.1ms)同步.
 #endif
 	usmart_dev.sptype=1;	//十六进制显示参数
-}		
+}
 //从str中获取函数名,id,及参数信息
 //*str:字符串指针.
 //返回值:0,识别成功;其他,错误代码.
-u8 usmart_cmd_rec(u8*str) 
+u8 usmart_cmd_rec(u8*str)
 {
-	u8 sta,i,rval;//状态	 
+	u8 sta,i,rval;//状态
 	u8 rpnum,spnum;
-	u8 rfname[MAX_FNAME_LEN];//暂存空间,用于存放接收到的函数名  
+	u8 rfname[MAX_FNAME_LEN];//暂存空间,用于存放接收到的函数名
 	u8 sfname[MAX_FNAME_LEN];//存放本地函数名
-	sta=usmart_get_fname(str,rfname,&rpnum,&rval);//得到接收到的数据的函数名及参数个数	  
+	sta=usmart_get_fname(str,rfname,&rpnum,&rval);//得到接收到的数据的函数名及参数个数
 	if(sta)return sta;//错误
 	for(i=0;i<usmart_dev.fnum;i++)
 	{
 		sta=usmart_get_fname((u8*)usmart_dev.funs[i].name,sfname,&spnum,&rval);//得到本地函数名及参数个数
-		if(sta)return sta;//本地解析有误	  
+		if(sta)return sta;//本地解析有误
 		if(usmart_strcmp(sfname,rfname)==0)//相等
 		{
 			if(spnum>rpnum)return USMART_PARMERR;//参数错误(输入参数比源函数参数少)
 			usmart_dev.id=i;//记录函数ID.
 			break;//跳出.
-		}	
+		}
 	}
 	if(i==usmart_dev.fnum)return USMART_NOFUNCFIND;	//未找到匹配的函数
- 	sta=usmart_get_fparam(str,&i);					//得到函数参数个数	
+ 	sta=usmart_get_fparam(str,&i);					//得到函数参数个数
 	if(sta)return sta;								//返回错误
 	usmart_dev.pnum=i;								//参数个数记录
     return USMART_OK;
@@ -343,19 +334,19 @@ u8 usmart_cmd_rec(u8*str)
 void usmart_exe(void)
 {
 	u8 id,i;
-	u32 res;		   
-	u32 temp[MAX_PARM];//参数转换,使之支持了字符串 
+	u32 res;
+	u32 temp[MAX_PARM];//参数转换,使之支持了字符串
 	u8 sfname[MAX_FNAME_LEN];//存放本地函数名
 	u8 pnum,rval;
 	id=usmart_dev.id;
 	if(id>=usmart_dev.fnum)return;//不执行.
-	usmart_get_fname((u8*)usmart_dev.funs[id].name,sfname,&pnum,&rval);//得到本地函数名,及参数个数 
+	usmart_get_fname((u8*)usmart_dev.funs[id].name,sfname,&pnum,&rval);//得到本地函数名,及参数个数
 	printf("\r\n%s(",sfname);//输出正要执行的函数名
 	for(i=0;i<pnum;i++)//输出参数
 	{
 		if(usmart_dev.parmtype&(1<<i))//参数是字符串
 		{
-			printf("%c",'"');			 
+			printf("%c",'"');
 			printf("%s",usmart_dev.parm+usmart_get_parmpos(i));
 			printf("%c",'"');
 			temp[i]=(u32)&(usmart_dev.parm[usmart_get_parmpos(i)]);
@@ -363,7 +354,7 @@ void usmart_exe(void)
 		{
 			temp[i]=*(u32*)(usmart_dev.parm+usmart_get_parmpos(i));
 			if(usmart_dev.sptype==SP_TYPE_DEC)printf("%lu",temp[i]);//10进制参数显示
-			else printf("0X%X",temp[i]);//16进制参数显示 	   
+			else printf("0X%X",temp[i]);//16进制参数显示
 		}
 		if(i!=pnum-1)printf(",");
 	}
@@ -371,7 +362,7 @@ void usmart_exe(void)
 	usmart_reset_runtime();	//计时器清零,开始计时
 	switch(usmart_dev.pnum)
 	{
-		case 0://无参数(void类型)											  
+		case 0://无参数(void类型)
 			res=(*(u32(*)())usmart_dev.funs[id].func)();
 			break;
 	    case 1://有1个参数
@@ -414,12 +405,12 @@ void usmart_exe(void)
 	if(rval==1)//需要返回值.
 	{
 		if(usmart_dev.sptype==SP_TYPE_DEC)printf("=%lu;\r\n",res);//输出执行结果(10进制参数显示)
-		else printf("=0X%X;\r\n",res);//输出执行结果(16进制参数显示)	   
+		else printf("=0X%X;\r\n",res);//输出执行结果(16进制参数显示)
 	}else printf(";\r\n");		//不需要返回值,直接输出结束
 	if(usmart_dev.runtimeflag)	//需要显示函数执行时间
-	{ 
-		printf("Function Run Time:%d.%1dms\r\n",usmart_dev.runtime/10,usmart_dev.runtime%10);//打印函数执行时间 
-	}	
+	{
+		printf("Function Run Time:%d.%1dms\r\n",usmart_dev.runtime/10,usmart_dev.runtime%10);//打印函数执行时间
+	}
 }
 //usmart扫描函数
 //通过调用该函数,实现usmart的各个控制.该函数需要每隔一定时间被调用一次
@@ -428,15 +419,15 @@ void usmart_exe(void)
 //如果非ALIENTEK用户,则USART_RX_STA和USART_RX_BUF[]需要用户自己实现
 void usmart_scan(void)
 {
-	u8 sta,len;  
+	u8 sta,len;
 	if(USART_RX_STA&0x8000)//串口接收完成？
-	{					   
+	{
 		len=USART_RX_STA&0x3fff;	//得到此次接收到的数据长度
-		USART_RX_BUF[len]='\0';	//在末尾加入结束符. 
+		USART_RX_BUF[len]='\0';	//在末尾加入结束符.
 		sta=usmart_dev.cmd_rec(USART_RX_BUF);//得到函数各个信息
-		if(sta==0)usmart_dev.exe();	//执行函数 
-		else 
-		{  
+		if(sta==0)usmart_dev.exe();	//执行函数
+		else
+		{
 			len=usmart_sys_cmd_exe(USART_RX_BUF);
 			if(len!=USMART_FUNCERR)sta=len;
 			if(sta)
@@ -445,37 +436,37 @@ void usmart_scan(void)
 				{
 					case USMART_FUNCERR:
 						printf(" 函数错误!\r\n");
-						printf(" 输入:help查询\r\n");					
-						break;	
+						printf(" 输入:help查询\r\n");
+						break;
 					case USMART_PARMERR:
-						printf(" 参数错误!\r\n");   			
-						break;				
+						printf(" 参数错误!\r\n");
+						break;
 					case USMART_PARMOVER:
-						printf(" 参数太多!\r\n");   			
-						break;		
+						printf(" 参数太多!\r\n");
+						break;
 					case USMART_NOFUNCFIND:
-						printf(" 未找到匹配的函数!\r\n");   			
-						break;	
+						printf(" 未找到匹配的函数!\r\n");
+						break;
 					default:
 						break;
 				}
 			}
 
 		}
-		USART_RX_STA=0;//状态寄存器清空	    
+		USART_RX_STA=0;//状态寄存器清空
 	}
 }
 
 #if USMART_USE_WRFUNS==1 	//如果使能了读写操作
-//读取指定地址的值		 
+//读取指定地址的值
 u32 read_addr(u32 addr)
 {
-	return *(u32*)addr;//	
+	return *(u32*)addr;//
 }
-//在指定地址写入指定的值		 
+//在指定地址写入指定的值
 void write_addr(u32 addr,u32 val)
 {
-	*(u32*)addr=val; 	
+	*(u32*)addr=val;
 }
 #endif
 
