@@ -7,6 +7,7 @@ pFunction Jump_To_Application;
 uint32_t JumpAddress;
 uint32_t BlockNbr = 0, UserMemoryMask = 0;
 __IO uint32_t FlashProtection = 0;
+
 uint8_t tab_1024[1024] = {0};
 
 
@@ -19,7 +20,7 @@ static void FLASH_DisableWriteProtectionPages(void)
 	FLASH_Status status = FLASH_BUSY;
 
 	WRPR = FLASH_GetWriteProtectionOptionByte();
-	
+
 	if ((WRPR & UserMemoryMask) != UserMemoryMask)
 	{
 		useroptionbyte = FLASH_GetUserOptionByte();
@@ -33,7 +34,7 @@ static void FLASH_DisableWriteProtectionPages(void)
 			status = FLASH_EnableWriteProtection((uint32_t)~UserMemoryMask);
 		}
 		if ((useroptionbyte & 0x07) != 0x07)
-		{ 
+		{
 			if ((useroptionbyte & 0x01) == 0x0)
 			{
 				var1 = OB_IWDG_HW;
@@ -73,11 +74,11 @@ void IAP_WriteFlag(uint16_t flag)
 	PWR->CR |= PWR_CR_DBP;
 	BKP_WriteBackupRegister(IAP_FLAG_ADDR, flag);
 	PWR->CR &= ~PWR_CR_DBP;
-#else 
+#else
 	FLASH_Unlock();
 	STMFLASH_Write(IAP_FLAG_ADDR, &flag, 1);
 	FLASH_Lock();
-#endif	
+#endif
 }
 
 /************************************************************************/
@@ -86,8 +87,8 @@ uint16_t IAP_ReadFlag(void)
 #if (USE_BKP_SAVE_FLAG == 1)
 	return BKP_ReadBackupRegister(IAP_FLAG_ADDR);
 #else
-	return STMFLASH_ReadHalfWord(IAP_FLAG_ADDR);  
-#endif	
+	return STMFLASH_ReadHalfWord(IAP_FLAG_ADDR);
+#endif
 }
 
 
@@ -102,21 +103,15 @@ void IAP_USART_Init(void)
     USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
     USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
 
-    STM_EVAL_COMInit(&USART_InitStructure);  
+    STM_EVAL_COMInit(&USART_InitStructure);
 }
 
-void IAP_Init(void)
-{
-  IAP_USART_Init();
-#if (USE_BKP_SAVE_FLAG == 1)
-	RCC_APB1PeriphClockCmd(RCC_APB1ENR_PWREN | RCC_APB1ENR_BKPEN , ENABLE); 
-#endif
-}
+
 /************************************************************************/
 int8_t IAP_RunApp(void)
 {
 	if (((*(__IO uint32_t*)ApplicationAddress) & 0x2FFE0000 ) == 0x20000000)
-	{   
+	{
 		// SerialPutString("\r\n Run to app.\r\n");
 		JumpAddress = *(__IO uint32_t*) (ApplicationAddress + 4);
 		Jump_To_Application = (pFunction) JumpAddress;
@@ -137,7 +132,7 @@ void IAP_Main_Menu(void)
 {
 	uint8_t cmdStr[CMD_STRING_SIZE] = {0};
 	BlockNbr = (FlashDestination - 0x08000000) >> 12;
-	
+
 #if defined (STM32F10X_MD) || defined (STM32F10X_MD_VL)
     UserMemoryMask = ((uint32_t)~((1 << BlockNbr) - 1));
 #else /* USE_STM3210E_EVAL */
@@ -149,8 +144,8 @@ void IAP_Main_Menu(void)
 	{
 		UserMemoryMask = ((uint32_t)0x80000000);
 	}
-#endif 
-	
+#endif
+
 	if ((FLASH_GetWriteProtectionOptionByte() & UserMemoryMask) != UserMemoryMask)
 	{
 		FlashProtection = 1;
@@ -171,7 +166,7 @@ void IAP_Main_Menu(void)
 		{
 			SerialPutString(" diswp\r\n");
 		}
-		
+
 		GetInputString(cmdStr);
 
 		if(strcmp((char *)cmdStr, CMD_UPDATE_STR) == 0)
@@ -253,12 +248,12 @@ int8_t IAP_Update(void)
 /************************************************************************/
 int8_t IAP_Upload(void)
 {
-	uint32_t status = 0; 
+	uint32_t status = 0;
 	SerialPutString("\n\n\rSelect Receive File ... (press any key to abort)\n\r");
 	if (GetKey() == CRC16)
 	{
 		status = Ymodem_Transmit((uint8_t*)ApplicationAddress, (const uint8_t*)"UploadedFlashImage.bin", FLASH_IMAGE_SIZE);
-		if (status != 0) 
+		if (status != 0)
 		{
 			SerialPutString("\n\rError Occured while Transmitting File\n\r");
 			return -1;
@@ -271,7 +266,7 @@ int8_t IAP_Upload(void)
 	}
 	else
 	{
-		SerialPutString("\r\n\nAborted by user.\n\r");  
+		SerialPutString("\r\n\nAborted by user.\n\r");
 		return 0;
 	}
 }
@@ -282,7 +277,7 @@ int8_t IAP_Erase(void)
 {
 	uint8_t erase_cont[3] = {0};
 	Int2Str(erase_cont, FLASH_IMAGE_SIZE / PAGE_SIZE);
-	SerialPutString(" @");													//ÒªÓÐ¿Õ¸ñ£¬±ÜÃâbug
+	SerialPutString(" @");
 	SerialPutString(erase_cont);
 	SerialPutString("@");
 	if(EraseSomePages(FLASH_IMAGE_SIZE, 1))
@@ -290,5 +285,12 @@ int8_t IAP_Erase(void)
 	else
 		return -1;
 }
-	
 
+
+void IAP_Init(void)
+{
+#if (USE_BKP_SAVE_FLAG == 1)
+	RCC_APB1PeriphClockCmd(RCC_APB1ENR_PWREN | RCC_APB1ENR_BKPEN , ENABLE);
+#endif
+	IAP_USART_Init();
+}

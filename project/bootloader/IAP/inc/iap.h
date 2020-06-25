@@ -1,5 +1,6 @@
 #ifndef __IAP_H__
 #define __IAP_H__
+
 #include "stm32f10x.h"
 
 /* Exported types ------------------------------------------------------------*/
