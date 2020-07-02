@@ -16,8 +16,8 @@
   *
   *        http://www.st.com/software_license_agreement_liberty_v2
   *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * Unless required by applicable law or agreed to in writing, software
+  * distributed under the License is distributed on an "AS IS" BASIS,
   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   * See the License for the specific language governing permissions and
   * limitations under the License.
@@ -26,7 +26,7 @@
   */
 
 //static const uint16_t  TimingTable[5][2] =
-//  { /*       Sector Erase time,            Sector Program time*/    
+//  { /*       Sector Erase time,            Sector Program time*/
 //    { SPI_FLASH_SECTOR_ERASE_TIME,    SPI_FLASH_SECTOR_WRITE_TIME },    /* SPI Flash */
 //    { M29W128F_SECTOR_ERASE_TIME,     M29W128F_SECTOR_WRITE_TIME },     /* NOR Flash M29W128F */
 //    { INTERN_FLASH_SECTOR_ERASE_TIME, INTERN_FLASH_SECTOR_WRITE_TIME }, /* Internal Flash */
@@ -54,7 +54,7 @@ uint8_t  MAL_Buffer[wTransferSize]; /* RAM Buffer for Downloaded Data */
 
 /* Private function prototypes -----------------------------------------------*/
 //static const uint16_t  TimingTable[5][2] =
-//  { /*       Sector Erase time,            Sector Program time*/    
+//  { /*       Sector Erase time,            Sector Program time*/
 //    { SPI_FLASH_SECTOR_ERASE_TIME,    SPI_FLASH_SECTOR_WRITE_TIME },    /* SPI Flash */
 //    { M29W128F_SECTOR_ERASE_TIME,     M29W128F_SECTOR_WRITE_TIME },     /* NOR Flash M29W128F */
 //    { INTERN_FLASH_SECTOR_ERASE_TIME, INTERN_FLASH_SECTOR_WRITE_TIME }, /* Internal Flash */
@@ -108,10 +108,10 @@ uint16_t MAL_Write (uint32_t SectorAddress, uint32_t DataLength)	//往FLASH写入数
 		}
 	}
 
-	//开始写入DataLength长度数据    
+	//开始写入DataLength长度数据
 	for (idx = 0; idx <  DataLength; idx = idx + 4)
 	{
-		FLASH_ProgramWord(SectorAddress, *(uint32_t *)(MAL_Buffer + idx));  
+		FLASH_ProgramWord(SectorAddress, *(uint32_t *)(MAL_Buffer + idx));
 		SectorAddress += 4;
 	}
 
@@ -142,12 +142,8 @@ uint16_t MAL_GetStatus(uint32_t SectorAddress , uint8_t Cmd, uint8_t *buffer)
 //  uint8_t x = (SectorAddress  >> 26) & 0x03 ; /* 0x000000000 --> 0 */
   /* 0x640000000 --> 1 */
   /* 0x080000000 --> 2 */
-
-//  uint8_t y = Cmd & 0x01;
-
-
-  
-//  SET_POLLING_TIMING(TimingTable[x][y]);  /* x: Erase/Write Timing */
+  //  uint8_t y = Cmd & 0x01;
+  //  SET_POLLING_TIMING(TimingTable[x][y]);  /* x: Erase/Write Timing */
   /* y: Media              */
   return MAL_OK;
 }

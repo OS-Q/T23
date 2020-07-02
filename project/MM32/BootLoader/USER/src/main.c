@@ -47,89 +47,60 @@ void Delay(__IO uint32_t nCount);
 * Return         : None.
 *******************************************************************************/
 //Jump Flag address 0x08001C00
-
 #define ApplicationAddress 0x08002000	//APP Address
-
 #define VECTOR_SIZE  0xC0   //48*4=192 = 0xC0
-
 extern uint8_t Flag_Receive;
-
 uint16_t DFU_state;
-
 typedef  void (*pFunction)(void);
-
-
 pFunction Jump_To_Application;
 uint32_t JumpAddress;
 
 
 int main(void)
 {
-
     u16 data1,data2;
-
-	  uart_initwBaudRate(115200);
-
-#ifdef PROTECT   
-	
-	  data1=*(u32*)0x1ffe0000;//地址Address必须是2的整数倍
-	  data2=*(u32*)0x1ffe0002;//地址Address必须是2的整数倍
-	
-	  printf("Pro1=%x,Pro2=%x \r\n",data1,data2);
-			
-		if((data1 != 0x7F80)||(data2 != 0xFF00))  //块保护
-		{
-						FLASH_Unlock();
-				
-						if(((data1 != 0xFFFF)||(data2 != 0xFFFF)))
-						{
-							FLASH_EraseOptionBlock(0x1ffe0000);
-						}
-					
-						FLASH_EnableReadOutProtection();
-						FLASH_UserOptionByteConfig(OB_IWDG_HW,OB_STOP_NoRST,OB_STDBY_NoRST);
-						FLASH_Lock();	
-						
-						printf("\r\nProtect SUCCESS\r\n");
-		}
-
-#endif
-		
-    DFU_state = 0;
-
-    DFU_state = DFU_read_state();
-  
-	  printf("DFU state=%x \r\n",DFU_state);
-	
-	if( DFU_state == 0x0000 )   ///	if( DFU_state == 0xAA55 )
+	uart_initwBaudRate(115200);
+#ifdef PROTECT
+	data1=*(u32*)0x1ffe0000;//地址Address必须是2的整数倍
+	data2=*(u32*)0x1ffe0002;//地址Address必须是2的整数倍
+	printf("Pro1=%x,Pro2=%x \r\n",data1,data2);
+	if((data1 != 0x7F80)||(data2 != 0xFF00))  //块保护
 	{
-
-//			__set_FAULTMASK(1); 	 // 
-			//__disable_irq();
-			/* Test if user code is programmed starting from address "ApplicationAddress" */
-			
-			if(((*(__IO uint32_t*)ApplicationAddress) & 0x2FFE0000 ) == 0x20000000)	//检查栈顶地址是否合法
-			{
-				/* Jump to user application */ 
-				JumpAddress = *(__IO uint32_t*) (ApplicationAddress + 4);
-				Jump_To_Application = (pFunction) JumpAddress;
-
-				/* Initialize user application's Stack Pointer */ 
-				__set_MSP(*(__IO uint32_t*) ApplicationAddress);
-				
-				//Jump to APP
-				Jump_To_Application();	
-			}
-		
+		FLASH_Unlock();
+		if(((data1 != 0xFFFF)||(data2 != 0xFFFF)))
+		{
+			FLASH_EraseOptionBlock(0x1ffe0000);
+		}
+		FLASH_EnableReadOutProtection();
+		FLASH_UserOptionByteConfig(OB_IWDG_HW,OB_STOP_NoRST,OB_STDBY_NoRST);
+		FLASH_Lock();
+		printf("\r\nProtect SUCCESS\r\n");
 	}
-	
-  Tim3_UPCount_test(48-1,100-1);  // 100us定时	
-	
-  while (1)
-  {
-     APP_Update();		
-	}	
-	
+#endif
+    DFU_state = 0;
+    DFU_state = DFU_read_state();
+	printf("DFU state=%x \r\n",DFU_state);
+	if(DFU_state == 0x0000)   ///	if( DFU_state == 0xAA55 )
+	{
+//		__set_FAULTMASK(1); 	 //
+		//__disable_irq();
+		/* Test if user code is programmed starting from address "ApplicationAddress" */
+		if(((*(__IO uint32_t*)ApplicationAddress) & 0x2FFE0000 ) == 0x20000000)	//检查栈顶地址是否合法
+		{
+			/* Jump to user application */
+			JumpAddress = *(__IO uint32_t*) (ApplicationAddress + 4);
+			Jump_To_Application = (pFunction) JumpAddress;
+			/* Initialize user application's Stack Pointer */
+			__set_MSP(*(__IO uint32_t*) ApplicationAddress);
+			//Jump to APP
+			Jump_To_Application();
+		}
+	}
+  	Tim3_UPCount_test(48-1,100-1);  // 100us定时
+	while (1)
+	{
+		APP_Update();
+	}
 }
 
 /*******************************************************************************
@@ -155,7 +126,7 @@ void Delay(__IO uint32_t nCount)
 * Return         : None
 *******************************************************************************/
 void assert_failed(uint8_t* file, uint32_t line)
-{ 
+{
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 
