@@ -8,6 +8,8 @@
 #ifndef __IAP_CONFIG_H__
 #define __IAP_CONFIG_H__
 
+#define IAP_VERSION           (100)
+
 #define USE_BKP_SAVE_FLAG     (0)
 #define ENABLE_PUTSTR         (1)
 
@@ -28,11 +30,6 @@
 #else
   #define INIT_FLAG_DATA      0xFFFF   //默认标志的数据(空片子的情况)
 #endif
-
-#define UPDATE_FLAG_DATA      0xEEEE   //下载标志的数据
-#define UPLOAD_FLAG_DATA      0xDDDD   //上传标志的数据
-#define ERASE_FLAG_DATA       0xCCCC   //擦除标志的数据
-#define APPRUN_FLAG_DATA      0x5A5A   //APP直接运行
 
 /* Define the Flsah area size ---------------------------------*/
 #if defined (STM32F10X_MD) || defined (STM32F10X_MD_VL)

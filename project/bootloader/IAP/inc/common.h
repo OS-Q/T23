@@ -9,15 +9,13 @@
 #define _COMMON_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "iap_config.h"
 #include "stdio.h"
 #include "string.h"
 #include "stm32f10x.h"
+#include "iap_config.h"
 
 
-/**
- * @brief Definition for COM port1, connected to USART1
- */
+
 #define EVAL_COM1                        USART1
 #define EVAL_COM1_CLK                    RCC_APB2Periph_USART1
 #define EVAL_COM1_TX_PIN                 GPIO_Pin_9
@@ -28,9 +26,7 @@
 #define EVAL_COM1_RX_GPIO_CLK            RCC_APB2Periph_GPIOA
 #define EVAL_COM1_IRQn                   USART1_IRQn
 
-/**
- * @brief Definition for COM port2, connected to USART2
- */
+
 #define EVAL_COM2                        USART2
 #define EVAL_COM2_CLK                    RCC_APB1Periph_USART2
 #define EVAL_COM2_TX_PIN                 GPIO_Pin_2
@@ -44,7 +40,7 @@
 
 
 /* Exported macro ------------------------------------------------------------*/
-/* Common routines */
+
 #define IS_AF(c)  ((c >= 'A') && (c <= 'F'))
 #define IS_af(c)  ((c >= 'a') && (c <= 'f'))
 #define IS_09(c)  ((c >= '0') && (c <= '9'))
@@ -59,6 +55,7 @@
 
 /* Exported functions ------------------------------------------------------- */
 void STM_EVAL_COMInit(USART_InitTypeDef* USART_InitStruct);
+
 void Int2Str(uint8_t* str,int32_t intnum);
 uint32_t Str2Int(uint8_t *inputstr,int32_t *intnum);
 uint32_t GetIntegerInput(int32_t * num);
@@ -71,6 +68,7 @@ uint32_t FLASH_PagesMask(__IO uint32_t Size);
 uint8_t EraseSomePages(__IO uint32_t size, uint8_t outPutCont);
 extern void Delay_ms( uint16_t time_ms );
 extern void assert_failed(uint8_t* file, uint32_t line);
+
 #endif  /* _COMMON_H */
 
 /*-------------------------(C) COPYRIGHT 2020 QITAS --------------------------*/

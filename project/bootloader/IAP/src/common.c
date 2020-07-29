@@ -36,31 +36,24 @@ void Delay_ms( uint16_t time_ms )
 void STM_EVAL_COMInit(USART_InitTypeDef* USART_InitStruct)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
-
 	/* Enable GPIO clock */
 	RCC_APB2PeriphClockCmd(EVAL_COM1_TX_GPIO_CLK | EVAL_COM1_RX_GPIO_CLK | RCC_APB2Periph_AFIO, ENABLE);
-
 	/* Enable UART clock */
 	RCC_APB2PeriphClockCmd(EVAL_COM1_CLK, ENABLE);
-
 	/* Configure USART Tx as alternate function push-pull */
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
 	GPIO_InitStructure.GPIO_Pin = EVAL_COM1_TX_PIN;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(EVAL_COM1_TX_GPIO_PORT, &GPIO_InitStructure);
-
 	/* Configure USART Rx as input floating */
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
 	GPIO_InitStructure.GPIO_Pin = EVAL_COM1_RX_PIN;
 	GPIO_Init(EVAL_COM1_RX_GPIO_PORT, &GPIO_InitStructure);
-
 	/* USART configuration */
 	USART_Init(EVAL_COM1, USART_InitStruct);
-
 	/* Enable USART */
 	USART_Cmd(EVAL_COM1, ENABLE);
 }
-
 
 /*******************************************************************************
 **º¯ÊýÐÅÏ¢ £º

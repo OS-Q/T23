@@ -1,10 +1,5 @@
 #include "delay.h"
 #include "sys.h"
-//////////////////////////////////////////////////////////////////////////////////
-//如果使用ucos,则包括下面的头文件即可.
-#if SYSTEM_SUPPORT_UCOS
-#include "includes.h"					//ucos 使用
-#endif
 
 static u8  fac_us=0;//us延时倍乘数
 static u16 fac_ms=0;//ms延时倍乘数
@@ -119,6 +114,7 @@ void delay_ms(u16 nms)
 	SysTick->VAL =0X00;       //清空计数器
 }
 #endif
+/*-------------------------(C) COPYRIGHT 2020 QITAS --------------------------*/
 
 
 

@@ -21,17 +21,17 @@ int main(void)
 				if(app_run()) iap_writeflag(INIT_FLAG_DATA);
 				break;
 			case INIT_FLAG_DATA:
-				IAP_Main_Menu();
+				iap_menu();
 				break;
-			case UPDATE_FLAG_DATA:	// download app state
+			case UPDATE_FLAG_DATA:
 				if(!iap_update()) iap_writeflag(APPRUN_FLAG_DATA);
 				else iap_writeflag(INIT_FLAG_DATA);
 				break;
-			case UPLOAD_FLAG_DATA:	// upload app state
-				if( !IAP_Upload())iap_writeflag(APPRUN_FLAG_DATA);
+			case UPLOAD_FLAG_DATA:
+				if(!iap_upload()) iap_writeflag(APPRUN_FLAG_DATA);
 				else iap_writeflag(INIT_FLAG_DATA);
 				break;
-			case ERASE_FLAG_DATA:	// erase app state
+			case ERASE_FLAG_DATA:
 				iap_erase();
 				iap_writeflag(INIT_FLAG_DATA);
 				break;

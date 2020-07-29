@@ -11,6 +11,11 @@
 #include "stm32f10x.h"
 
 
+#define UPDATE_FLAG_DATA      0xEEEE   //下载标志的数据
+#define UPLOAD_FLAG_DATA      0xDDDD   //上传标志的数据
+#define ERASE_FLAG_DATA       0xCCCC   //擦除标志的数据
+#define APPRUN_FLAG_DATA      0x5A5A   //APP直接运行
+
 
 typedef  void (*pFunction)(void);
 
@@ -21,9 +26,9 @@ extern void iap_init(void);
 extern uint16_t iap_readflag(void);
 extern void iap_writeflag(uint16_t flag);
 extern int8_t app_run(void);
-extern void IAP_Main_Menu(void);
+extern void iap_menu(void);
 extern int8_t iap_update(void);
-extern int8_t IAP_Upload(void);
+extern int8_t iap_upload(void);
 extern int8_t iap_erase(void);
 
 

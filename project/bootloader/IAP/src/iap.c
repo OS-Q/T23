@@ -12,9 +12,10 @@
 #include "ymodem.h"
 
 pFunction Jump_To_Application;
-uint32_t JumpAddress;
-uint32_t BlockNbr = 0, UserMemoryMask = 0;
 __IO uint32_t FlashProtection = 0;
+uint32_t JumpAddress;
+
+uint32_t BlockNbr = 0, UserMemoryMask = 0;
 uint8_t tab_1024[1024] = {0};
 
 /*******************************************************************************
@@ -146,10 +147,10 @@ void IAP_USART_Init(void)
 *******************************************************************************/
 void iap_init(void)
 {
-	IAP_USART_Init();
 #if (USE_BKP_SAVE_FLAG == 1)
 	RCC->APB1ENR |= (RCC_APB1ENR_PWREN | RCC_APB1ENR_BKPEN );
 #endif
+	IAP_USART_Init();
 }
 
 
@@ -173,7 +174,7 @@ int8_t app_run(void)
 	}
 	else
 	{
-		SerialPutString("\r\n Run to app error.\r\n");
+		SerialPutString("\r\n Run app error.\r\n");
 		return -1;
 	}
 }
@@ -185,10 +186,10 @@ int8_t app_run(void)
 **???? ??
 **???? ??
 *******************************************************************************/
-void IAP_Main_Menu(void)
+void iap_menu(void)
 {
 	uint8_t cmdStr[CMD_STRING_SIZE] = {0};
-	BlockNbr = (FlashDestination - 0x08000000) >> 12;
+	BlockNbr = (FlashDestination - STM32_FLASH_BASE) >> 12;
 
 #if defined (STM32F10X_MD) || defined (STM32F10X_MD_VL)
     UserMemoryMask = ((uint32_t)~((1 << BlockNbr) - 1));
@@ -199,7 +200,7 @@ void IAP_Main_Menu(void)
 	}
 	else
 	{
-		UserMemoryMask = ((uint32_t)0x80000000);
+		UserMemoryMask = ((uint32_t)STM32_FLASH_BASE);
 	}
 #endif
 
@@ -213,17 +214,16 @@ void IAP_Main_Menu(void)
 	}
 	while (1)
 	{
-		SerialPutString("\r\n\r\n IAP Bootloader Menu (V0.4.0)\r\n");
+		SerialPutString("\r\n\r\n IAP MEMU (V0.5.0)\r\n");
 		SerialPutString(" update\r\n");
 		SerialPutString(" upload\r\n");
 		SerialPutString(" delete\r\n");
 		SerialPutString(" config\r\n");
 		SerialPutString(" reboot\r\n");
-		if(FlashProtection != 0)//There is write protected
+		if(FlashProtection != 0)	//There is write protected
 		{
 			SerialPutString(" diswp\r\n");
 		}
-
 		GetInputString(cmdStr);
 
 		if(strcmp((char *)cmdStr, CMD_UPDATE_STR) == 0)
@@ -311,7 +311,7 @@ int8_t iap_update(void)
 **???? ??
 **???? ??
 *******************************************************************************/
-int8_t IAP_Upload(void)
+int8_t iap_upload(void)
 {
 	uint32_t status = 0;
 	SerialPutString("\n\n\rSelect Receive File ... (press any key to abort)\n\r");

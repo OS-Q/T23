@@ -307,11 +307,12 @@ int32_t Ymodem_CheckResponse(uint8_t c)
   return 0;
 }
 
-/**
-  * @brief  Prepare the first block
-  * @param  timeout
-  *     0: end of transmission
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 void Ymodem_PrepareIntialPacket(uint8_t *data, const uint8_t* fileName, uint32_t *length)
 {
   uint16_t i, j;
@@ -382,12 +383,12 @@ void Ymodem_PreparePacket(uint8_t *SourceBuf, uint8_t *data, uint8_t pktNo, uint
   }
 }
 
-/**
-  * @brief  Update CRC16 for input byte
-  * @param  CRC input value
-  * @param  input byte
-   * @retval None
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 uint16_t UpdateCRC16(uint16_t crcIn, uint8_t byte)
 {
   uint32_t crc = crcIn;

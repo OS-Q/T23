@@ -129,7 +129,7 @@ namespace win_iap_ymodem
         {
             openFileDialog1.ShowDialog();
         }
-        
+
 
         /// <summary>
         /// has been selected the right file.
@@ -240,7 +240,7 @@ namespace win_iap_ymodem
             {
                 MessageBox.Show("获取串口设备失败");
                 return;
-            } 
+            }
             string[] strCommList = regSubKey.GetValueNames();
             foreach (string VName in strCommList)
             {

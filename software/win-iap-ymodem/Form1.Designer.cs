@@ -80,7 +80,7 @@
             this.progressBar1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.progressBar1.Location = new System.Drawing.Point(251, 363);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(471, 22);
+            this.progressBar1.Size = new System.Drawing.Size(416, 22);
             this.progressBar1.TabIndex = 2;
             // 
             // serialPort1
@@ -138,7 +138,7 @@
             this.txb_FilePath.BackColor = System.Drawing.SystemColors.Window;
             this.txb_FilePath.Location = new System.Drawing.Point(251, 336);
             this.txb_FilePath.Name = "txb_FilePath";
-            this.txb_FilePath.Size = new System.Drawing.Size(471, 21);
+            this.txb_FilePath.Size = new System.Drawing.Size(416, 21);
             this.txb_FilePath.TabIndex = 7;
             // 
             // btn_SelectFile
@@ -182,7 +182,7 @@
             this.groupBox2.Controls.Add(this.tbx_show);
             this.groupBox2.Location = new System.Drawing.Point(184, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(538, 330);
+            this.groupBox2.Size = new System.Drawing.Size(483, 330);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "串口数据";
@@ -194,7 +194,7 @@
             this.tbx_show.Multiline = true;
             this.tbx_show.Name = "tbx_show";
             this.tbx_show.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbx_show.Size = new System.Drawing.Size(526, 302);
+            this.tbx_show.Size = new System.Drawing.Size(471, 302);
             this.tbx_show.TabIndex = 9;
             this.tbx_show.TextChanged += new System.EventHandler(this.tbx_show_TextChanged);
             this.tbx_show.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbx_show_KeyPress);
@@ -299,7 +299,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(729, 392);
+            this.ClientSize = new System.Drawing.Size(676, 392);
             this.Controls.Add(this.cbx_PageSize);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btn_SelectFile);

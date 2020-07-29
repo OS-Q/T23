@@ -9,9 +9,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //FLASHÆðÊ¼µØÖ·
-#define STM32_FLASH_BASE 0x08000000 	//STM32 FLASHµÄÆðÊ¼µØÖ·
-//FLASH½âËø¼üÖµ
-
+#define STM32_FLASH_BASE    (0x08000000) 	//STM32 FLASHµÄÆðÊ¼µØÖ·
 
 u16 STMFLASH_ReadHalfWord(u32 faddr);		  //¶Á³ö°ë×Ö
 void STMFLASH_WriteLenByte(u32 WriteAddr,u32 DataToWrite,u16 Len);	//Ö¸¶¨µØÖ·¿ªÊ¼Ð´ÈëÖ¸¶¨³¤¶ÈµÄÊý¾Ý
@@ -22,6 +20,7 @@ void STMFLASH_Read(u32 ReadAddr,u16 *pBuffer,u16 NumToRead);   		//´ÓÖ¸¶¨µØÖ·¿ªÊ
 void Test_Write(u32 WriteAddr,u16 WriteData);
 #endif
 
+/*-------------------------(C) COPYRIGHT 2020 QITAS --------------------------*/
 
 
 
