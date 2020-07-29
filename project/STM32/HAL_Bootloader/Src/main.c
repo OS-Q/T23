@@ -5,7 +5,7 @@
   ******************************************************************************
   ** This notice applies to any and all portions of this file
   * that are not between comment pairs USER CODE BEGIN and
-  * USER CODE END. Other portions of this file, whether 
+  * USER CODE END. Other portions of this file, whether
   * inserted by the user or by software development tools
   * are owned by their respective copyright owners.
   *
@@ -50,7 +50,7 @@
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 volatile uint8_t FlagData[20] ;//__attribute__((at(FlagAddress))) = "APP-V0.1-2017-08-04";
- 
+
 
 /* USER CODE END PV */
 
@@ -108,7 +108,7 @@ int main(void)
      * FLASH 测试代码�?
      * FLASH的操作流程都�? 解锁 -> 擦除 -> 写数�? -> 上锁
      */
-    #if 0  
+    #if 0
     //1、解锁FLASH
     HAL_FLASH_Unlock();
 
@@ -134,19 +134,13 @@ int main(void)
     //4、锁住FLASH
     HAL_FLASH_Lock();
     #endif
-   
-
-    /*
-     * 跳转到APP的检测方法：1.可以利用自己设置的标志量�?2.可以�?测APP位置区的前两个字的数�?
-     * 这里使用的是方法1 
-    */
-    #if 1         
+    #if 1
     for(uint8_t i = 0; i < 20; i++)
     {
         FlagData[i] = *(__IO uint32_t*)(FlagAddress + i);
     }
     #endif
-    
+
 
   /* USER CODE END 2 */
 
@@ -158,25 +152,25 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
     if((FlagData[0]=='A')&&(FlagData[1]=='P')&&(FlagData[2]=='P')&&(FlagData[3]=='-'))
-    {       
-        printf("\r\n[Application Version]: ");   
-        printf("%s",FlagData); 
-        printf("\r\n APP Start ...\r\n\r\n\r\n");   
+    {
+        printf("\r\n[Application Version]: ");
+        printf("%s",FlagData);
+        printf("\r\n APP Start ...\r\n\r\n\r\n");
 
         JumpToAPP();
     }
     else
-    {          
-          
+    {
+
         /* Download user application in the Flash */
         SerialDownload();
         HAL_NVIC_SystemReset();//Initiates a system reset request to reset the MCU.
     }
 
-    
+
     // status_flag = HAL_UART_Receive(&huart1,&a, 1, 0x3E8);
-  
-  
+
+
   }
   /* USER CODE END 3 */
 
@@ -190,7 +184,7 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct;
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
 
-    /**Initializes the CPU, AHB and APB busses clocks 
+    /**Initializes the CPU, AHB and APB busses clocks
     */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
@@ -204,7 +198,7 @@ void SystemClock_Config(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-    /**Initializes the CPU, AHB and APB busses clocks 
+    /**Initializes the CPU, AHB and APB busses clocks
     */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
@@ -218,11 +212,11 @@ void SystemClock_Config(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-    /**Configure the Systick interrupt time 
+    /**Configure the Systick interrupt time
     */
   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
 
-    /**Configure the Systick 
+    /**Configure the Systick
     */
   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
 
@@ -243,10 +237,10 @@ void _Error_Handler(char * file, int line)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
-  while(1) 
+  while(1)
   {
   }
-  /* USER CODE END Error_Handler_Debug */ 
+  /* USER CODE END Error_Handler_Debug */
 }
 
 #ifdef USE_FULL_ASSERT
@@ -271,10 +265,10 @@ void assert_failed(uint8_t* file, uint32_t line)
 
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-*/ 
+*/
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
