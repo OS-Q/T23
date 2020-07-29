@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Device\CMSIS\KEIL_CORE;..\..\Device\MM32F031x8\HAL_lib\inc;..\..\Device\MM32F031x8\Include;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\uart;..\HARDWARE\TIM;..\HARDWARE\UART_NVIC;..\HARDWARE\LED</IncludePath>
+              <IncludePath>..\..\Device\CMSIS\KEIL_CORE;..\..\Device\MM32F031x8\HAL_lib\inc;..\..\Device\MM32F031x8\Include;..\SYS\delay;..\SYS\sys;..\SYS\uart;..\BSP\TIM;..\BSP\UART_NVIC;..\BSP\LED</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -395,22 +395,22 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>HARDWARE</GroupName>
+          <GroupName>BSP</GroupName>
           <Files>
             <File>
               <FileName>tim3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\TIM\tim3.c</FilePath>
+              <FilePath>..\BSP\TIM\tim3.c</FilePath>
             </File>
             <File>
               <FileName>uart_nvic.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\UART_NVIC\uart_nvic.c</FilePath>
+              <FilePath>..\BSP\UART_NVIC\uart_nvic.c</FilePath>
             </File>
             <File>
               <FileName>led.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\LED\led.c</FilePath>
+              <FilePath>..\BSP\LED\led.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -505,17 +505,17 @@
             <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\SYSTEM\delay\delay.c</FilePath>
+              <FilePath>..\SYS\delay\delay.c</FilePath>
             </File>
             <File>
               <FileName>sys.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\SYSTEM\sys\sys.c</FilePath>
+              <FilePath>..\SYS\sys\sys.c</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\SYSTEM\uart\uart.c</FilePath>
+              <FilePath>..\SYS\uart\uart.c</FilePath>
             </File>
           </Files>
         </Group>

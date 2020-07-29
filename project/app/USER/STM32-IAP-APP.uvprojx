@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\HARDWARE\LED;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\..\STM32F10x_FWLib\inc;..\CORE;..\HARDWARE\KEY;..\HARDWARE\LCD;..\HARDWARE\RTC;..\HARDWARE\RTC;..\HARDWARE\WKUP;..\HARDWARE\ADC;..\HARDWARE\DAC;..\HARDWARE\DMA;..\HARDWARE\IIC;..\HARDWARE\24CXX;..\HARDWARE\SPI;..\HARDWARE\FLASH;..\HARDWARE\TOUCH;..\HARDWARE\REMOTE;..\HARDWARE\ADXL345;..\HARDWARE\DS18B20;..\HARDWARE\STMFLASH;..\USMART;..\SYSTEM\iap</IncludePath>
+              <IncludePath>..\BSP\LED;..\SYS\delay;..\SYS\sys;..\SYS\usart;..\USER;..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\CORE;..\BSP\KEY;..\BSP\LCD;..\BSP\RTC;..\BSP\RTC;..\BSP\WKUP;..\BSP\ADC;..\BSP\DAC;..\BSP\DMA;..\BSP\IIC;..\BSP\24CXX;..\BSP\SPI;..\BSP\FLASH;..\BSP\TOUCH;..\BSP\REMOTE;..\BSP\ADXL345;..\BSP\DS18B20;..\BSP\STMFLASH;..\USMART;..\SYS\iap</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -400,22 +400,22 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>HARDWARE</GroupName>
+          <GroupName>BSP</GroupName>
           <Files>
             <File>
               <FileName>led.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\LED\led.c</FilePath>
+              <FilePath>..\BSP\LED\led.c</FilePath>
             </File>
             <File>
               <FileName>lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\LCD\lcd.c</FilePath>
+              <FilePath>..\BSP\LCD\lcd.c</FilePath>
             </File>
             <File>
               <FileName>stmflash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\STMFLASH\stmflash.c</FilePath>
+              <FilePath>..\BSP\STMFLASH\stmflash.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -425,22 +425,22 @@
             <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\SYSTEM\delay\delay.c</FilePath>
+              <FilePath>..\SYS\delay\delay.c</FilePath>
             </File>
             <File>
               <FileName>sys.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\SYSTEM\sys\sys.c</FilePath>
+              <FilePath>..\SYS\sys\sys.c</FilePath>
             </File>
             <File>
               <FileName>usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\SYSTEM\usart\usart.c</FilePath>
+              <FilePath>..\SYS\usart\usart.c</FilePath>
             </File>
             <File>
               <FileName>iap.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\SYSTEM\iap\iap.c</FilePath>
+              <FilePath>..\SYS\iap\iap.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -450,12 +450,12 @@
             <File>
               <FileName>core_cm3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\CORE\core_cm3.c</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\CoreSupport\core_cm3.c</FilePath>
             </File>
             <File>
               <FileName>startup_stm32f10x_hd.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\CORE\startup_stm32f10x_hd.s</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_hd.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -465,42 +465,42 @@
             <File>
               <FileName>misc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\misc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_flash.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_flash.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_fsmc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_fsmc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_gpio.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_usart.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_rcc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_rcc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_tim.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_tim.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_tim.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_bkp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_bkp.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_bkp.c</FilePath>
             </File>
           </Files>
         </Group>

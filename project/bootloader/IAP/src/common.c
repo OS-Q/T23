@@ -1,27 +1,3 @@
-/**
-  ******************************************************************************
-  * @file    IAP/src/common.c 
-  * @author  MCD Application Team
-  * @version V3.3.0
-  * @date    10/15/2010
-  * @brief   This file provides all the common functions.
-  ******************************************************************************
-  * @copy
-  *
-  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
-  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
-  * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
-  * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
-  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
-  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
-  *
-  * <h2><center>&copy; COPYRIGHT 2010 STMicroelectronics</center></h2>
-  */ 
-
-/** @addtogroup IAP
-  * @{
-  */
-
 /* Includes ------------------------------------------------------------------*/
 #include "common.h"
 #include <string.h>
@@ -50,9 +26,9 @@ void assert_failed(uint8_t* file, uint32_t line)
 /**
   * @brief  Configures COM port.
   * @param  COM: Specifies the COM port to be configured.
-  *   This parameter can be one of following parameters:    
+  *   This parameter can be one of following parameters:
   *     @arg COM1
-  *     @arg COM2  
+  *     @arg COM2
   * @param  USART_InitStruct: pointer to a USART_InitTypeDef structure that
   *   contains the configuration information for the specified USART peripheral.
   * @retval None
@@ -65,7 +41,7 @@ void STM_EVAL_COMInit(USART_InitTypeDef* USART_InitStruct)
   RCC_APB2PeriphClockCmd(EVAL_COM1_TX_GPIO_CLK | EVAL_COM1_RX_GPIO_CLK | RCC_APB2Periph_AFIO, ENABLE);
 
   /* Enable UART clock */
-  RCC_APB2PeriphClockCmd(EVAL_COM1_CLK, ENABLE); 
+  RCC_APB2PeriphClockCmd(EVAL_COM1_CLK, ENABLE);
 
 
   /* Configure USART Tx as alternate function push-pull */
@@ -81,7 +57,7 @@ void STM_EVAL_COMInit(USART_InitTypeDef* USART_InitStruct)
 
   /* USART configuration */
   USART_Init(EVAL_COM1, USART_InitStruct);
-    
+
   /* Enable USART */
   USART_Cmd(EVAL_COM1, ENABLE);
 }
@@ -262,7 +238,7 @@ uint32_t SerialKeyPressed(uint8_t *key)
   */
 uint8_t GetKey(void)
 {
-	uint8_t key = 0; 
+	uint8_t key = 0;
   /* Waiting for user input */
 	while (1)
 	{
@@ -320,7 +296,7 @@ void GetInputString (uint8_t * buffP)
 			if(buffP[bytes_read-1] == '\r')
 				break;
 		}
-		
+
 		if (c == '\b') /* Backspace */
 		{
 			if (bytes_read > 0)
@@ -381,7 +357,7 @@ uint8_t EraseSomePages(__IO uint32_t size, uint8_t outPutCont)
 	uint32_t NbrOfPage = 0;
 	uint8_t erase_cont[3] = {0};
 	FLASH_Status FLASHStatus = FLASH_COMPLETE;
-	
+
 	NbrOfPage = FLASH_PagesMask(size);
 
 	/* Erase the FLASH pages */

@@ -2,9 +2,6 @@
 #include "usart.h"
 //////////////////////////////////////////////////////////////////////////////////
 //如果使用ucos,则包括下面的头文件即可.
-#if SYSTEM_SUPPORT_UCOS
-#include "includes.h"					//ucos 使用
-#endif
 
 //////////////////////////////////////////////////////////////////
 //加入以下代码,支持printf函数,而不需要选择use MicroLIB
@@ -23,6 +20,7 @@ void _sys_exit(int x)
 {
 	x = x;
 }
+
 //重定义fputc函数
 int fputc(int ch, FILE *f)
 {
@@ -33,7 +31,7 @@ int fputc(int ch, FILE *f)
 #endif
 
 /*使用microLib的方法*/
- /*
+/*
 int fputc(int ch, FILE *f)
 {
 	USART_SendData(USART1, (uint8_t) ch);
@@ -62,7 +60,8 @@ u16 USART_RX_STA=0;       //接收状态标记
 
 //初始化IO 串口1
 //bound:波特率
-void uart_init(u32 bound){
+void uart_init(u32 bound)
+{
     //GPIO端口设置
     GPIO_InitTypeDef GPIO_InitStructure;
 	USART_InitTypeDef USART_InitStructure;

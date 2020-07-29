@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STM3210B_EVAL, STM32F10X_MD, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\inc;..\CORE;..\MDK-ARM;..\..\STM32F10x_FWLib\inc;..\IAP\inc</IncludePath>
+              <IncludePath>..\inc;..\CORE;..\MDK-ARM;..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\IAP\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -430,37 +430,37 @@
             <File>
               <FileName>stm32f10x_exti.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_exti.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_flash.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_flash.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_gpio.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_rcc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_rcc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_usart.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</FilePath>
             </File>
             <File>
               <FileName>misc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\misc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_bkp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_bkp.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_bkp.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -470,7 +470,7 @@
             <File>
               <FileName>core_cm3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\CORE\core_cm3.c</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\CoreSupport\core_cm3.c</FilePath>
             </File>
             <File>
               <FileName>startup_stm32f10x_cl.s</FileName>
@@ -518,7 +518,7 @@
             <File>
               <FileName>startup_stm32f10x_hd.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\CORE\startup_stm32f10x_hd.s</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_hd.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -690,7 +690,7 @@
             <File>
               <FileName>startup_stm32f10x_md.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\CORE\startup_stm32f10x_md.s</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_md.s</FilePath>
             </File>
             <File>
               <FileName>startup_stm32f10x_md_vl.s</FileName>
@@ -799,6 +799,7 @@
       <TargetName>BOOT_HD</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -1126,7 +1127,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STM3210E_EVAL, STM32F10X_HD, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\STM32F10x_FWLib\inc;..\CORE;..\MDK-ARM;..\IAP\inc</IncludePath>
+              <IncludePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\CORE;..\MDK-ARM;..\IAP\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1218,37 +1219,37 @@
             <File>
               <FileName>stm32f10x_exti.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_exti.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_flash.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_flash.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_gpio.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_rcc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_rcc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_usart.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</FilePath>
             </File>
             <File>
               <FileName>misc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\misc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_bkp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_bkp.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_bkp.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1258,7 +1259,7 @@
             <File>
               <FileName>core_cm3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\CORE\core_cm3.c</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\CoreSupport\core_cm3.c</FilePath>
             </File>
             <File>
               <FileName>startup_stm32f10x_cl.s</FileName>
@@ -1306,7 +1307,7 @@
             <File>
               <FileName>startup_stm32f10x_hd.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\CORE\startup_stm32f10x_hd.s</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_hd.s</FilePath>
             </File>
             <File>
               <FileName>startup_stm32f10x_hd_vl.s</FileName>
@@ -1440,7 +1441,7 @@
             <File>
               <FileName>startup_stm32f10x_md.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\CORE\startup_stm32f10x_md.s</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_md.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1915,7 +1916,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STM32100B_EVAL, STM32F10X_MD_VL, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\inc;..\CORE;..\MDK-ARM;..\..\STM32F10x_FWLib\inc;..\IAP\inc</IncludePath>
+              <IncludePath>..\inc;..\CORE;..\MDK-ARM;..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\IAP\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -2007,37 +2008,37 @@
             <File>
               <FileName>stm32f10x_exti.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_exti.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_flash.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_flash.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_gpio.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_rcc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_rcc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_usart.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</FilePath>
             </File>
             <File>
               <FileName>misc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\misc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_bkp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_bkp.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_bkp.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2047,7 +2048,7 @@
             <File>
               <FileName>core_cm3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\CORE\core_cm3.c</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\CoreSupport\core_cm3.c</FilePath>
             </File>
             <File>
               <FileName>startup_stm32f10x_cl.s</FileName>
@@ -2095,7 +2096,7 @@
             <File>
               <FileName>startup_stm32f10x_hd.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\CORE\startup_stm32f10x_hd.s</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_hd.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2267,7 +2268,7 @@
             <File>
               <FileName>startup_stm32f10x_md.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\CORE\startup_stm32f10x_md.s</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_md.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2704,7 +2705,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STM32100E_EVAL, STM32F10X_HD_VL, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\inc;..\CORE;..\MDK-ARM;..\..\STM32F10x_FWLib\inc;..\IAP\inc</IncludePath>
+              <IncludePath>..\inc;..\CORE;..\MDK-ARM;..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\IAP\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -2796,37 +2797,37 @@
             <File>
               <FileName>stm32f10x_exti.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_exti.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_flash.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_flash.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_gpio.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_rcc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_rcc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_usart.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</FilePath>
             </File>
             <File>
               <FileName>misc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\misc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_bkp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_bkp.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_bkp.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2836,7 +2837,7 @@
             <File>
               <FileName>core_cm3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\CORE\core_cm3.c</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\CoreSupport\core_cm3.c</FilePath>
             </File>
             <File>
               <FileName>startup_stm32f10x_cl.s</FileName>
@@ -2884,7 +2885,7 @@
             <File>
               <FileName>startup_stm32f10x_hd.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\CORE\startup_stm32f10x_hd.s</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_hd.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -3018,7 +3019,7 @@
             <File>
               <FileName>startup_stm32f10x_md.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\CORE\startup_stm32f10x_md.s</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_md.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -3492,7 +3493,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STM3210E_EVAL, STM32F10X_XL, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\inc;..\CORE;..\MDK-ARM;..\..\STM32F10x_FWLib\inc;..\IAP\inc</IncludePath>
+              <IncludePath>..\inc;..\CORE;..\MDK-ARM;..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\IAP\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -3584,37 +3585,37 @@
             <File>
               <FileName>stm32f10x_exti.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_exti.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_flash.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_flash.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_gpio.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_rcc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_rcc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_usart.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</FilePath>
             </File>
             <File>
               <FileName>misc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\misc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_bkp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_bkp.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_bkp.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3624,7 +3625,7 @@
             <File>
               <FileName>core_cm3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\CORE\core_cm3.c</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\CoreSupport\core_cm3.c</FilePath>
             </File>
             <File>
               <FileName>startup_stm32f10x_cl.s</FileName>
@@ -3672,7 +3673,7 @@
             <File>
               <FileName>startup_stm32f10x_hd.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\CORE\startup_stm32f10x_hd.s</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_hd.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -3844,7 +3845,7 @@
             <File>
               <FileName>startup_stm32f10x_md.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\CORE\startup_stm32f10x_md.s</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_md.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -4281,7 +4282,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER, STM32F10X_CL, USE_STM3210C_EVAL</Define>
               <Undefine></Undefine>
-              <IncludePath>..\inc;..\CORE;..\MDK-ARM;..\..\STM32F10x_FWLib\inc;..\IAP\inc</IncludePath>
+              <IncludePath>..\inc;..\CORE;..\MDK-ARM;..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\IAP\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -4373,37 +4374,37 @@
             <File>
               <FileName>stm32f10x_exti.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_exti.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_flash.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_flash.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_gpio.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_rcc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_rcc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_usart.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</FilePath>
             </File>
             <File>
               <FileName>misc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\misc.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_bkp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\STM32F10x_FWLib\src\stm32f10x_bkp.c</FilePath>
+              <FilePath>..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_bkp.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4413,7 +4414,7 @@
             <File>
               <FileName>core_cm3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\CORE\core_cm3.c</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\CoreSupport\core_cm3.c</FilePath>
             </File>
             <File>
               <FileName>startup_stm32f10x_cl.s</FileName>
@@ -4423,7 +4424,7 @@
             <File>
               <FileName>startup_stm32f10x_hd.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\CORE\startup_stm32f10x_hd.s</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_hd.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -4595,7 +4596,7 @@
             <File>
               <FileName>startup_stm32f10x_md.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\CORE\startup_stm32f10x_md.s</FilePath>
+              <FilePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_md.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>

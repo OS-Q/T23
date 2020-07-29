@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Device\CMSIS\KEIL_CORE;..\..\Device\MM32F031x8\HAL_lib\inc;..\..\Device\MM32F031x8\Include;..\USER\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\uart;..\HARDWARE\UART_NVIC;..\HARDWARE\TIM;..\HARDWARE\PROTECT</IncludePath>
+              <IncludePath>..\..\Device\CMSIS\KEIL_CORE;..\..\Device\MM32F031x8\HAL_lib\inc;..\..\Device\MM32F031x8\Include;..\USER\inc;..\SYS\delay;..\SYS\sys;..\SYS\uart;..\BSP\UART_NVIC;..\BSP\TIM;..\BSP\PROTECT</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -445,22 +445,22 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>HARDWARE</GroupName>
+          <GroupName>BSP</GroupName>
           <Files>
             <File>
               <FileName>uart_nvic.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\UART_NVIC\uart_nvic.c</FilePath>
+              <FilePath>..\BSP\UART_NVIC\uart_nvic.c</FilePath>
             </File>
             <File>
               <FileName>tim3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\TIM\tim3.c</FilePath>
+              <FilePath>..\BSP\TIM\tim3.c</FilePath>
             </File>
             <File>
               <FileName>protect.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\PROTECT\protect.c</FilePath>
+              <FilePath>..\BSP\PROTECT\protect.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -490,12 +490,12 @@
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\SYSTEM\uart\uart.c</FilePath>
+              <FilePath>..\SYS\uart\uart.c</FilePath>
             </File>
             <File>
               <FileName>sys.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\SYSTEM\sys\sys.c</FilePath>
+              <FilePath>..\SYS\sys\sys.c</FilePath>
             </File>
           </Files>
         </Group>
