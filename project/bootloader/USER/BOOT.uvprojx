@@ -49,13 +49,13 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\OBJ\</OutputDirectory>
-          <OutputName>BOOT_MD</OutputName>
+          <OutputName>BOOT</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath>.\OUTPUT\STM32-IAP_MD\</ListingPath>
+          <ListingPath>.\list\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
@@ -336,9 +336,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_STM3210B_EVAL, STM32F10X_MD, USE_STDPERIPH_DRIVER</Define>
+              <Define>STM32F10X_MD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\inc;..\CORE;..\MDK-ARM;..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\IAP\inc</IncludePath>
+              <IncludePath>..\inc;..\USER;..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\IAP\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

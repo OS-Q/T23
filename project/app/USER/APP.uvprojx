@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>STM32-IAP-APP</TargetName>
+      <TargetName>APP</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
@@ -48,14 +48,14 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>..\OUTPUT\</OutputDirectory>
-          <OutputName>Demo</OutputName>
+          <OutputDirectory>.\obj\</OutputDirectory>
+          <OutputName>APP</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath>..\OUTPUT\</ListingPath>
+          <ListingPath>.\list\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
@@ -81,11 +81,11 @@
           </BeforeMake>
           <AfterMake>
             <RunUserProg1>1</RunUserProg1>
-            <RunUserProg2>1</RunUserProg2>
-            <UserProg1Name>.\..\..\Binary\hex2bin.exe .\..\OUTPUT\Demo.hex</UserProg1Name>
+            <RunUserProg2>0</RunUserProg2>
+            <UserProg1Name>fromelf.exe #L --vhx --8x1 --output main.hex;fromelf --bin -o "$L@L.bin" "#L"</UserProg1Name>
             <UserProg2Name>.\..\..\Binary\hex2dfu.exe -t .\..\OUTPUT\Demo.hex</UserProg2Name>
-            <UserProg1Dos16Mode>1</UserProg1Dos16Mode>
-            <UserProg2Dos16Mode>1</UserProg2Dos16Mode>
+            <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
+            <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopA1X>0</nStopA1X>
             <nStopA2X>0</nStopA2X>
           </AfterMake>
@@ -420,7 +420,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>SYSTEM</GroupName>
+          <GroupName>SYS</GroupName>
           <Files>
             <File>
               <FileName>delay.c</FileName>
@@ -537,7 +537,7 @@
       <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.1.2" condition="ARMv6_7_8-M Device">
         <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="5.4.0"/>
         <targetInfos>
-          <targetInfo name="STM32-IAP-APP"/>
+          <targetInfo name="APP"/>
         </targetInfos>
       </component>
     </components>
