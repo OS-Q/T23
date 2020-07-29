@@ -16,6 +16,7 @@
 #define ERASE_FLAG_DATA       0xCCCC   //擦除标志的数据
 #define APPRUN_FLAG_DATA      0x5A5A   //APP直接运行
 
+#define STM32_FLASH_BASE         (0x08000000)
 
 typedef  void (*pFunction)(void);
 
