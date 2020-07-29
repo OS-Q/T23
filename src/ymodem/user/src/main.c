@@ -34,7 +34,7 @@ extern uint32_t JumpAddress;
 
 
 /* Private function prototypes -----------------------------------------------*/
-static void IAP_Init(void);
+static void iap_init(void);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -50,7 +50,8 @@ USART_InitTypeDef USART_InitStructure;
 *******************************************************************************/
 void RCC_Configuration(void)
 {
-  RCC_APB2PeriphClockCmd( RCC_APB2Periph_USART1 |RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOB |RCC_APB2Periph_AFIO  , ENABLE);
+  RCC->APB2ENR |= RCC_APB2Periph_USART1 |RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOB |RCC_APB2Periph_AFIO ;
+  // RCC_APB2PeriphClockCmd( RCC_APB2Periph_USART1 |RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOB |RCC_APB2Periph_AFIO  , ENABLE);
 }
 
 /*******************************************************************************
@@ -62,7 +63,6 @@ void RCC_Configuration(void)
 
 void GPIO_Configuration(void)
 {
-
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;				     //LED1控制--PB5
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;			 //推挽输出
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -131,7 +131,7 @@ void key_init()
 **输出参数 ：无
 *******************************************************************************/
 
-void IAP_Init(void)
+void iap_init(void)
 {
   RCC_Configuration();											  //系统时钟设置
   GPIO_Configuration();											  //端口初始化
@@ -160,7 +160,7 @@ int main(void)
   { /* If Key is pressed */
 
     /* Execute the IAP driver in order to re-program the Flash */
-    IAP_Init();
+    iap_init();
     SerialPutString("\r\n======================================================================");
     SerialPutString("\r\n=              (C) COPYRIGHT 2009 STMicroelectronics                 =");
     SerialPutString("\r\n=                                                                    =");

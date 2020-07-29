@@ -6,68 +6,68 @@
 ****版权：
 *******************************************************************************/
 
-/* Includes ------------------------------------------------------------------*/
-#include "common.h"
 #include <string.h>
 #include <stdlib.h>
+#include "common.h"
 
-#ifdef USE_FULL_ASSERT
 
-void assert_failed(uint8_t* file, uint32_t line)
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
+void Delay_ms( uint16_t time_ms )
 {
-	while (1)
+	uint16_t i,j;
+	for( i=0;i<time_ms;i++ )
 	{
+		for( j=0;j<4784;j++ );
 	}
 }
-#endif
 
-/**
-  * @brief  Configures COM port.
-  * @param  COM: Specifies the COM port to be configured.
-  *   This parameter can be one of following parameters:
-  *     @arg COM1
-  *     @arg COM2
-  * @param  USART_InitStruct: pointer to a USART_InitTypeDef structure that
-  *   contains the configuration information for the specified USART peripheral.
-  * @retval None
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 
 void STM_EVAL_COMInit(USART_InitTypeDef* USART_InitStruct)
 {
-  GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitTypeDef GPIO_InitStructure;
 
-  /* Enable GPIO clock */
-  RCC_APB2PeriphClockCmd(EVAL_COM1_TX_GPIO_CLK | EVAL_COM1_RX_GPIO_CLK | RCC_APB2Periph_AFIO, ENABLE);
+	/* Enable GPIO clock */
+	RCC_APB2PeriphClockCmd(EVAL_COM1_TX_GPIO_CLK | EVAL_COM1_RX_GPIO_CLK | RCC_APB2Periph_AFIO, ENABLE);
 
-  /* Enable UART clock */
-  RCC_APB2PeriphClockCmd(EVAL_COM1_CLK, ENABLE);
+	/* Enable UART clock */
+	RCC_APB2PeriphClockCmd(EVAL_COM1_CLK, ENABLE);
 
+	/* Configure USART Tx as alternate function push-pull */
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+	GPIO_InitStructure.GPIO_Pin = EVAL_COM1_TX_PIN;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(EVAL_COM1_TX_GPIO_PORT, &GPIO_InitStructure);
 
-  /* Configure USART Tx as alternate function push-pull */
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-  GPIO_InitStructure.GPIO_Pin = EVAL_COM1_TX_PIN;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_Init(EVAL_COM1_TX_GPIO_PORT, &GPIO_InitStructure);
+	/* Configure USART Rx as input floating */
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+	GPIO_InitStructure.GPIO_Pin = EVAL_COM1_RX_PIN;
+	GPIO_Init(EVAL_COM1_RX_GPIO_PORT, &GPIO_InitStructure);
 
-  /* Configure USART Rx as input floating */
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-  GPIO_InitStructure.GPIO_Pin = EVAL_COM1_RX_PIN;
-  GPIO_Init(EVAL_COM1_RX_GPIO_PORT, &GPIO_InitStructure);
+	/* USART configuration */
+	USART_Init(EVAL_COM1, USART_InitStruct);
 
-  /* USART configuration */
-  USART_Init(EVAL_COM1, USART_InitStruct);
-
-  /* Enable USART */
-  USART_Cmd(EVAL_COM1, ENABLE);
+	/* Enable USART */
+	USART_Cmd(EVAL_COM1, ENABLE);
 }
 
 
-/**
-  * @brief  Convert an Integer to a string
-  * @param  str: The string
-  * @param  intnum: The intger to be converted
-  * @retval None
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 void Int2Str(uint8_t* str, int32_t intnum)
 {
 	uint32_t i, Div = 1000000000, j = 0, Status = 0;
@@ -89,13 +89,12 @@ void Int2Str(uint8_t* str, int32_t intnum)
 	}
 }
 
-/**
-  * @brief  Convert a string to an integer
-  * @param  inputstr: The string to be converted
-  * @param  intnum: The intger value
-  * @retval 1: Correct
-  *         0: Error
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 uint32_t Str2Int(uint8_t *inputstr, int32_t *intnum)
 {
 	uint32_t i = 0, res = 0;
@@ -179,12 +178,12 @@ uint32_t Str2Int(uint8_t *inputstr, int32_t *intnum)
 	return res;
 }
 
-/**
-  * @brief  Get an integer from the HyperTerminal
-  * @param  num: The inetger
-  * @retval 1: Correct
-  *         0: Error
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 uint32_t GetIntegerInput(int32_t * num)
 {
 	uint8_t inputstr[16];
@@ -210,12 +209,12 @@ uint32_t GetIntegerInput(int32_t * num)
 	}
 }
 
-/**
-  * @brief  Test to see if a key has been pressed on the HyperTerminal
-  * @param  key: The key pressed
-  * @retval 1: Correct
-  *         0: Error
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 uint32_t SerialKeyPressed(uint8_t *key)
 {
 
@@ -230,11 +229,12 @@ uint32_t SerialKeyPressed(uint8_t *key)
 	}
 }
 
-/**
-  * @brief  Get a key from the HyperTerminal
-  * @param  None
-  * @retval The Key Pressed
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 uint8_t GetKey(void)
 {
 	uint8_t key = 0;
@@ -247,11 +247,12 @@ uint8_t GetKey(void)
 
 }
 
-/**
-  * @brief  Print a character on the HyperTerminal
-  * @param  c: The character to be printed
-  * @retval None
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 void SerialPutChar(uint8_t c)
 {
 	USART_SendData(EVAL_COM1, c);
@@ -260,11 +261,13 @@ void SerialPutChar(uint8_t c)
 	}
 }
 
-/**
-  * @brief  Print a string on the HyperTerminal
-  * @param  s: The string to be printed
-  * @retval None
-  */
+
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 void Serial_PutString(uint8_t *s)
 {
 #if (ENABLE_PUTSTR == 1)
@@ -276,11 +279,12 @@ void Serial_PutString(uint8_t *s)
 #endif
 }
 
-/**
-  * @brief  Get Input string from the HyperTerminal
-  * @param  buffP: The input string
-  * @retval None
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 void GetInputString (uint8_t * buffP)
 {
 	uint32_t bytes_read = 0;
@@ -324,16 +328,12 @@ void GetInputString (uint8_t * buffP)
 
 
 
-
-/**
-  * @}
-  */
-
-/**
-  * @brief  Calculate the number of pages
-  * @param  Size: The image size
-  * @retval The number of pages
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 uint32_t FLASH_PagesMask(__IO uint32_t Size)
 {
 	uint32_t pagenumber = 0x0;
@@ -349,7 +349,12 @@ uint32_t FLASH_PagesMask(__IO uint32_t Size)
 	}
 	return pagenumber;
 }
-
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 uint8_t EraseSomePages(__IO uint32_t size, uint8_t outPutCont)
 {
 	uint32_t EraseCounter = 0x0;
@@ -378,20 +383,20 @@ uint8_t EraseSomePages(__IO uint32_t size, uint8_t outPutCont)
 	}
 	return 1;
 }
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
+#ifdef USE_FULL_ASSERT
 
- /**
-  * @file   Delay_ms
-  * @brief  毫秒延时time_ms ms
-  * @param   time_ms 延时时间
-  * @retval 无
-  */
-void Delay_ms( uint16_t time_ms )
+void assert_failed(uint8_t* file, uint32_t line)
 {
-  uint16_t i,j;
-  for( i=0;i<time_ms;i++ )
-  {
-		for( j=0;j<4784;j++ );
-  }
+	while (1)
+	{
+	}
 }
+#endif
 
 /*-------------------------(C) COPYRIGHT 2020 QITAS --------------------------*/

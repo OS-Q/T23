@@ -1,4 +1,10 @@
-
+/******************************************************************************
+****版本：1.0.0
+****平台：
+****日期：2020-07-29
+****作者：Qitas
+****版权：
+*******************************************************************************/
 #ifndef _COMMON_H
 #define _COMMON_H
 
@@ -49,10 +55,10 @@
 #define CONVERTHEX_alpha(c)  (IS_AF(c) ? (c - 'A'+10) : (c - 'a'+10))
 #define CONVERTHEX(c)   (IS_09(c) ? (c - '0') : CONVERTHEX_alpha(c))
 
-#define SerialPutString(x) Serial_PutString((uint8_t*)(x))
+#define SerialPutString(x)  Serial_PutString((uint8_t*)(x))
 
 /* Exported functions ------------------------------------------------------- */
-extern void STM_EVAL_COMInit(USART_InitTypeDef* USART_InitStruct);
+void STM_EVAL_COMInit(USART_InitTypeDef* USART_InitStruct);
 void Int2Str(uint8_t* str,int32_t intnum);
 uint32_t Str2Int(uint8_t *inputstr,int32_t *intnum);
 uint32_t GetIntegerInput(int32_t * num);

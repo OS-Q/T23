@@ -1,25 +1,33 @@
+/******************************************************************************
+****版本：1.0.0
+****平台：
+****日期：2020-07-29
+****作者：Qitas
+****版权：
+*******************************************************************************/
+
 #include "stmflash.h"
 #include "iap_config.h"
-/**
-  * @brief  Read half words (16-bit data) of the specified address
-  * @note   This function can be used for all STM32F10x devices.
-  * @param  faddr: The address to be read (the multiple of the address, which is 2)
-  * @retval Value of specified address
-  */
+
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
+
 u16 STMFLASH_ReadHalfWord(u32 faddr)
 {
 	return *(vu16*)faddr;
 }
 
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 
-/**
-  * @brief  There is no check writing.
-  * @note   This function can be used for all STM32F10x devices.
-  * @param  WriteAddr: The starting address to be written.
-  * @param  pBuffer: The pointer to the data.
-  * @param  NumToWrite:  The number of half words written
-  * @retval None
-  */
 static void STMFLASH_Write_NoCheck(u32 WriteAddr,u16 *pBuffer,u16 NumToWrite)
 {
 	u16 i;
@@ -32,20 +40,18 @@ static void STMFLASH_Write_NoCheck(u32 WriteAddr,u16 *pBuffer,u16 NumToWrite)
 
 u16 STMFLASH_BUF[PAGE_SIZE / 2];//Up to 2K bytes
 
-/**
-  * @brief  Write data from the specified address to the specified length.
-  * @note   This function can be used for all STM32F10x devices.
-  * @param  WriteAddr: The starting address to be written.(The address must be a multiple of two)
-  * @param  pBuffer: The pointer to the data.
-  * @param  NumToWrite:  The number of half words written
-  * @retval None
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 void STMFLASH_Write(u32 WriteAddr,u16 *pBuffer,u16 NumToWrite)
 {
 	u32 secpos;	   //扇区地址
 	u16 secoff;	   //扇区内偏移地址(16位字计算)
 	u16 secremain; //扇区内剩余地址(16位字计算)
- 	u16 i;
+	u16 i;
 	u32 offaddr;   //去掉0X08000000后的地址
 	if((WriteAddr < FLASH_BASE) || (WriteAddr >= FLASH_BASE + 1024 * FLASH_SIZE))return;//非法地址
 	FLASH_Unlock();						//解锁
@@ -86,15 +92,13 @@ void STMFLASH_Write(u32 WriteAddr,u16 *pBuffer,u16 NumToWrite)
 	};
 	FLASH_Lock();//上锁
 }
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 
-/**
-  * @brief  Start reading the specified data from the specified address.
-  * @note   This function can be used for all STM32F10x devices.
-  * @param  ReadAddr: Start addr
-  * @param  pBuffer: The pointer to the data.
-  * @param  NumToWrite:  The number of half words written(16bit)
-  * @retval None
-  */
 void STMFLASH_Read(u32 ReadAddr,u16 *pBuffer,u16 NumToRead)
 {
 	u16 i;

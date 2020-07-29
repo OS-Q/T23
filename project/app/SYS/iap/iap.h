@@ -24,9 +24,9 @@
 #define IAP_FLASH_SIZE  0x3000//Bootloader区域大小
 #define ApplicationAddress  (FLASH_BASE + IAP_FLASH_SIZE)//应用程序地址
 
-void IAP_WriteFlag(uint16_t flag);
-uint16_t IAP_ReadFlag(void);
-void IAP_Init(void);
+void iap_writeflag(uint16_t flag);
+uint16_t iap_readflag(void);
+void iap_init(void);
 void IAP_Handle(u8 * cmd);
 
 #endif

@@ -31,7 +31,7 @@ void iap_reset(void)
 **输入参数 ：无
 **输出参数 ：无
 *******************************************************************************/
-void IAP_WriteFlag(uint16_t flag)
+void iap_writeflag(uint16_t flag)
 {
 #if (USE_BKP_SAVE_FLAG == 1)
 	PWR->CR |= PWR_CR_DBP;
@@ -51,7 +51,7 @@ void IAP_WriteFlag(uint16_t flag)
 **输入参数 ：无
 **输出参数 ：无
 *******************************************************************************/
-uint16_t IAP_ReadFlag(void)
+uint16_t iap_readflag(void)
 {
 #if (USE_BKP_SAVE_FLAG == 1)
 	return BKP_ReadBackupRegister(IAP_FLAG_ADDR);
@@ -67,7 +67,7 @@ uint16_t IAP_ReadFlag(void)
 **输入参数 ：无
 **输出参数 ：无
 *******************************************************************************/
-void IAP_Init(void)
+void iap_init(void)
 {
 #if (USE_BKP_SAVE_FLAG == 1)
 	RCC->APB1ENR |= (RCC_APB1ENR_PWREN | RCC_APB1ENR_BKPEN );
@@ -90,17 +90,17 @@ void IAP_Handle(u8 *mark,u8 * cmd)
 		mark[0]=0;
 		if(strcmp((char *)cmd, "update") == 0)
 		{
-			IAP_WriteFlag(UPDATE_FLAG_DATA);
+			iap_writeflag(UPDATE_FLAG_DATA);
 			iap_reset();
 		}
 		else if(strcmp((char *)cmd, "erase") == 0)
 		{
-			IAP_WriteFlag(ERASE_FLAG_DATA);
+			iap_writeflag(ERASE_FLAG_DATA);
 			iap_reset();
 		}
 		else if(strcmp((char *)cmd, "menu") == 0)
 		{
-			IAP_WriteFlag(INIT_FLAG_DATA);
+			iap_writeflag(INIT_FLAG_DATA);
 			iap_reset();
 		}
 		else if(strcmp((char *)cmd, "runapp") == 0)//reset

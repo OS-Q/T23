@@ -89,7 +89,7 @@ static void FLASH_DisableWriteProtectionPages(void)
 
 
 /************************************************************************/
-void IAP_WriteFlag(uint16_t flag)
+void iap_writeflag(uint16_t flag)
 {
 #if (USE_BKP_SAVE_FLAG == 1)
 	PWR->CR |= PWR_CR_DBP;
@@ -101,6 +101,7 @@ void IAP_WriteFlag(uint16_t flag)
 	FLASH_Lock();
 #endif
 }
+
 /***********************************************************************************
 **???? ?
 **???? ?
@@ -108,7 +109,7 @@ void IAP_WriteFlag(uint16_t flag)
 **???? ?
 ************************************************************************************/
 
-uint16_t IAP_ReadFlag(void)
+uint16_t iap_readflag(void)
 {
 #if (USE_BKP_SAVE_FLAG == 1)
 	return BKP_ReadBackupRegister(IAP_FLAG_ADDR);
@@ -143,13 +144,14 @@ void IAP_USART_Init(void)
 **???? ??
 **???? ??
 *******************************************************************************/
-void IAP_Init(void)
+void iap_init(void)
 {
 	IAP_USART_Init();
 #if (USE_BKP_SAVE_FLAG == 1)
-	RCC_APB1PeriphClockCmd(RCC_APB1ENR_PWREN | RCC_APB1ENR_BKPEN , ENABLE);
+	RCC->APB1ENR |= (RCC_APB1ENR_PWREN | RCC_APB1ENR_BKPEN );
 #endif
 }
+
 
 
 /*******************************************************************************
@@ -158,7 +160,7 @@ void IAP_Init(void)
 **???? ??
 **???? ??
 *******************************************************************************/
-int8_t IAP_RunApp(void)
+int8_t app_run(void)
 {
 	if (((*(__IO uint32_t*)ApplicationAddress) & 0x2FFE0000 ) == 0x20000000)
 	{
@@ -190,7 +192,7 @@ void IAP_Main_Menu(void)
 
 #if defined (STM32F10X_MD) || defined (STM32F10X_MD_VL)
     UserMemoryMask = ((uint32_t)~((1 << BlockNbr) - 1));
-#else /* USE_STM3210E_EVAL */
+#else
 	if (BlockNbr < 62)
 	{
 		UserMemoryMask = ((uint32_t)~((1 << BlockNbr) - 1));
@@ -226,26 +228,26 @@ void IAP_Main_Menu(void)
 
 		if(strcmp((char *)cmdStr, CMD_UPDATE_STR) == 0)
 		{
-			IAP_WriteFlag(UPDATE_FLAG_DATA);
+			iap_writeflag(UPDATE_FLAG_DATA);
 			return;
 		}
 		else if(strcmp((char *)cmdStr, CMD_UPLOAD_STR) == 0)
 		{
-			IAP_WriteFlag(UPLOAD_FLAG_DATA);
+			iap_writeflag(UPLOAD_FLAG_DATA);
 			return;
 		}
 		else if(strcmp((char *)cmdStr, CMD_ERASE_STR) == 0)
 		{
-			IAP_WriteFlag(ERASE_FLAG_DATA);
+			iap_writeflag(ERASE_FLAG_DATA);
 			return;
 		}
 		else if(strcmp((char *)cmdStr, CMD_MENU_STR) == 0)
 		{
-			IAP_WriteFlag(INIT_FLAG_DATA);
+			iap_writeflag(INIT_FLAG_DATA);
 		}
 		else if(strcmp((char *)cmdStr, CMD_RUNAPP_STR) == 0)
 		{
-			IAP_WriteFlag(APPRUN_FLAG_DATA);
+			iap_writeflag(APPRUN_FLAG_DATA);
 			return;
 		}
 		else if(strcmp((char *)cmdStr, CMD_DISWP_STR) == 0)
@@ -265,7 +267,7 @@ void IAP_Main_Menu(void)
 **???? ??
 **???? ??
 *******************************************************************************/
-int8_t IAP_Update(void)
+int8_t iap_update(void)
 {
 	uint8_t Number[10] = "";
 	int32_t Size = 0;
@@ -283,7 +285,7 @@ int8_t IAP_Update(void)
 	}
 	else if (Size == -1)
 	{
-		SerialPutString("\r\n Image Too Big!\r\n");
+		SerialPutString("\r\n Image size Too Big!\r\n");
 		return -1;
 	}
 	else if (Size == -2)
@@ -340,11 +342,10 @@ int8_t IAP_Upload(void)
 **???? ??
 **???? ??
 *******************************************************************************/
-
-int8_t IAP_Erase(void)
+int8_t iap_erase(void)
 {
 	uint8_t erase_cont[3] = {0};
-	Int2Str(erase_cont, FLASH_IMAGE_SIZE / PAGE_SIZE);
+	Int2Str(erase_cont, FLASH_IMAGE_SIZE/PAGE_SIZE);
 	SerialPutString(" @");
 	SerialPutString(erase_cont);
 	SerialPutString("@");

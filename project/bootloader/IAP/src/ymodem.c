@@ -390,19 +390,19 @@ void Ymodem_PreparePacket(uint8_t *SourceBuf, uint8_t *data, uint8_t pktNo, uint
   */
 uint16_t UpdateCRC16(uint16_t crcIn, uint8_t byte)
 {
- uint32_t crc = crcIn;
- uint32_t in = byte|0x100;
- do
- {
- crc <<= 1;
- in <<= 1;
- if(in&0x100)
- ++crc;
- if(crc&0x10000)
- crc ^= 0x1021;
- }
- while(!(in&0x10000));
- return crc&0xffffu;
+  uint32_t crc = crcIn;
+  uint32_t in = byte|0x100;
+  do
+  {
+  crc <<= 1;
+  in <<= 1;
+  if(in&0x100)
+  ++crc;
+  if(crc&0x10000)
+  crc ^= 0x1021;
+  }
+  while(!(in&0x10000));
+  return crc&0xffffu;
 }
 
 /*******************************************************************************
@@ -413,14 +413,12 @@ uint16_t UpdateCRC16(uint16_t crcIn, uint8_t byte)
 *******************************************************************************/
 uint16_t Cal_CRC16(const uint8_t* data, uint32_t size)
 {
- uint32_t crc = 0;
- const uint8_t* dataEnd = data+size;
- while(data<dataEnd)
-  crc = UpdateCRC16(crc,*data++);
-
- crc = UpdateCRC16(crc,0);
- crc = UpdateCRC16(crc,0);
- return crc&0xffffu;
+  uint32_t crc = 0;
+  const uint8_t* dataEnd = data+size;
+  while(data<dataEnd) crc = UpdateCRC16(crc,*data++);
+  crc = UpdateCRC16(crc,0);
+  crc = UpdateCRC16(crc,0);
+  return crc&0xffffu;
 }
 /*******************************************************************************
 **º¯ÊýÐÅÏ¢ £º
@@ -431,11 +429,10 @@ uint16_t Cal_CRC16(const uint8_t* data, uint32_t size)
 
 uint8_t CalChecksum(const uint8_t* data, uint32_t size)
 {
- uint32_t sum = 0;
- const uint8_t* dataEnd = data+size;
- while(data < dataEnd )
-   sum += *data++;
- return sum&0xffu;
+  uint32_t sum = 0;
+  const uint8_t* dataEnd = data+size;
+  while(data < dataEnd) sum += *data++;
+  return sum&0xffu;
 }
 
 /*******************************************************************************
@@ -489,14 +486,14 @@ uint8_t Ymodem_Transmit (uint8_t *buf, const uint8_t* sendFileName, uint32_t siz
     /* Send CRC or Check Sum based on CRC16_F */
     if (CRC16_F)
     {
-       tempCRC = Cal_CRC16(&packet_data[3], PACKET_128B_SIZE);
-       Send_Byte(tempCRC >> 8);
-       Send_Byte(tempCRC & 0xFF);
+        tempCRC = Cal_CRC16(&packet_data[3], PACKET_128B_SIZE);
+        Send_Byte(tempCRC >> 8);
+        Send_Byte(tempCRC & 0xFF);
     }
     else
     {
-       tempCheckSum = CalChecksum (&packet_data[3], PACKET_128B_SIZE);
-       Send_Byte(tempCheckSum);
+        tempCheckSum = CalChecksum (&packet_data[3], PACKET_128B_SIZE);
+        Send_Byte(tempCheckSum);
     }
 
     /* Wait for Ack and 'C' */
@@ -549,9 +546,9 @@ uint8_t Ymodem_Transmit (uint8_t *buf, const uint8_t* sendFileName, uint32_t siz
       /* Send CRC or Check Sum based on CRC16_F */
       if (CRC16_F)
       {
-         tempCRC = Cal_CRC16(&packet_data[3], pktSize);
-         Send_Byte(tempCRC >> 8);
-         Send_Byte(tempCRC & 0xFF);
+          tempCRC = Cal_CRC16(&packet_data[3], pktSize);
+          Send_Byte(tempCRC >> 8);
+          Send_Byte(tempCRC & 0xFF);
       }
       else
       {
@@ -565,16 +562,16 @@ uint8_t Ymodem_Transmit (uint8_t *buf, const uint8_t* sendFileName, uint32_t siz
         ackReceived = 1;
         if (size > pktSize)
         {
-           buf_ptr += pktSize;
-           size -= pktSize;
-           if (blkNumber == (FLASH_IMAGE_SIZE/1024))
-           {
-             return 0xFF; /*  error */
-           }
-           else
-           {
-              blkNumber++;
-           }
+            buf_ptr += pktSize;
+            size -= pktSize;
+            if (blkNumber == (FLASH_IMAGE_SIZE/1024))
+            {
+              return 0xFF; /*  error */
+            }
+            else
+            {
+                blkNumber++;
+            }
         }
         else
         {

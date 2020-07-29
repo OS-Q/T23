@@ -15,7 +15,7 @@
 int main(void)
 {
 	u16 times=0;
-	IAP_Init();
+	iap_init();
 	delay_init(72);
 	NVIC_Configuration();
 	uart_init(115200);

@@ -30,9 +30,9 @@
 #define   ERASE_FLAG_DATA       0xCCCC   //擦除标志的数据
 #define   APPRUN_FLAG_DATA      0x5A5A   //APP不需要做任何处理，直接运行状态
 
-void IAP_Init(void);
-void IAP_WriteFlag(uint16_t flag);
-uint16_t IAP_ReadFlag(void);
+void iap_init(void);
+void iap_writeflag(uint16_t flag);
+uint16_t iap_readflag(void);
 void IAP_Handle(u8 *mark,u8 * cmd);
 
 #endif

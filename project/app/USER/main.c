@@ -9,7 +9,7 @@
 int main(void)
 {
 	u16 i=0;
-	IAP_Init();
+	iap_init();
 	delay_init();	    	 //延时函数初始化
 	NVIC_Configuration(); 	 //设置NVIC中断分组2:2位抢占优先级，2位响应优先级
 	uart_init(115200);	 	 //串口初始化为9600

@@ -1,22 +1,3 @@
-/**
-  ******************************************************************************
-  * @file    IAP/inc/common.h 
-  * @author  MCD Application Team
-  * @version V3.1.0
-  * @date    07/27/2009
-  * @brief   This file provides all the headers of the common functions.
-  ******************************************************************************
-  * @copy
-  *
-  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
-  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
-  * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
-  * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
-  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
-  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
-  *
-  * <h2><center>&copy; COPYRIGHT 2009 STMicroelectronics</center></h2>
-  */ 
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef _COMMON_H
@@ -27,7 +8,7 @@
 #include "string.h"
 #include "stm32f10x.h"
 #include "ymodem.h"
-#include "stm32_eval.h" 
+#include "stm32_eval.h"
 
 /* Exported types ------------------------------------------------------------*/
 typedef  void (*pFunction)(void);
@@ -47,8 +28,8 @@ typedef  void (*pFunction)(void);
 #elif defined STM32F10X_CL
  #define PAGE_SIZE                         (0x800)
  #define FLASH_SIZE                        (0x40000) /* 256K */
-#else 
- #error "Please select first the STM32 device to be used (in stm32f10x.h)"    
+#else
+ #error "Please select first the STM32 device to be used (in stm32f10x.h)"
 #endif /* STM32F10X_MD */
 
 /* Exported macro ------------------------------------------------------------*/
