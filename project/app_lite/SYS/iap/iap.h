@@ -9,9 +9,7 @@
 #ifndef __IAP_H_
 #define __IAP_H_
 
-// #include "sys.h"
-
-#define USE_BKP_SAVE_FLAG       (1)
+#define USE_BKP_SAVE_FLAG       (0)
 #define USE_HAL_LIBS_FLAG       (0)
 
 #define   STM32_BASE            (0x08000000) 	//STM32 FLASH的起始地址

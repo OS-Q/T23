@@ -68,3 +68,4 @@ uint8_t Ymodem_Transmit (uint8_t *,const  uint8_t* , uint32_t );
 
 #endif  /* _YMODEM_H_ */
 
+/*-------------------------(C) COPYRIGHT 2020 QITAS --------------------------*/

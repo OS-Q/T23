@@ -3,7 +3,7 @@
 #include "sys.h"
 
 /* Define if use bkp save flag  -------------------------------*/
-#define USE_BKP_SAVE_FLAG     1
+#define USE_BKP_SAVE_FLAG     (0)
 
 #if (USE_BKP_SAVE_FLAG == 1)
   #define INIT_FLAG_DATA      0x0000  //默认标志的数据(空片子的情况)
@@ -30,3 +30,4 @@ void IAP_Init(void);
 void IAP_Handle(u8 * cmd);
 
 #endif
+/*-------------------------(C) COPYRIGHT 2020 QITAS --------------------------*/

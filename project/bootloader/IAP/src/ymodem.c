@@ -25,16 +25,12 @@ uint16_t PageSize = PAGE_SIZE;
 uint32_t RamSource;
 extern uint8_t tab_1024[1024];
 
-/* Private function prototypes -----------------------------------------------*/
-/* Private functions ---------------------------------------------------------*/
-
-/**
-  * @brief  Receive byte from sender
-  * @param  c: Character
-  * @param  timeout: Timeout
-  * @retval 0: Byte received
-  *         -1: Timeout
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 static  int32_t Receive_Byte (uint8_t *c, uint32_t timeout)
 {
   while (timeout-- > 0)
@@ -47,11 +43,12 @@ static  int32_t Receive_Byte (uint8_t *c, uint32_t timeout)
   return -1;
 }
 
-/**
-  * @brief  Send a byte
-  * @param  c: Character
-  * @retval 0: Byte sent
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 static uint32_t Send_Byte (uint8_t c)
 {
   SerialPutChar(c);
@@ -144,12 +141,12 @@ static int32_t Receive_Packet (uint8_t *data, int32_t *length, uint32_t timeout)
   return 0;
 }
 
-
-/**
-  * @brief  Receive a file using the ymodem protocol
-  * @param  buf: Address of the first byte
-  * @retval The size of the file
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 int32_t Ymodem_Receive (uint8_t *buf)
 {
   uint8_t packet_data[PACKET_1KB_SIZE + PACKET_OVERHEAD], file_size[FILE_SIZE_LENGTH], *file_ptr, *buf_ptr;
@@ -299,11 +296,12 @@ int32_t Ymodem_Receive (uint8_t *buf)
   return (int32_t)size;
 }
 
-/**
-  * @brief  check response using the ymodem protocol
-  * @param  buf: Address of the first byte
-  * @retval The size of the file
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 int32_t Ymodem_CheckResponse(uint8_t c)
 {
   return 0;
@@ -344,11 +342,12 @@ void Ymodem_PrepareIntialPacket(uint8_t *data, const uint8_t* fileName, uint32_t
   }
 }
 
-/**
-  * @brief  Prepare the data packet
-  * @param  timeout
-  *     0: end of transmission
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 void Ymodem_PreparePacket(uint8_t *SourceBuf, uint8_t *data, uint8_t pktNo, uint32_t sizeBlk)
 {
   uint16_t i, size, packetSize;
@@ -406,13 +405,12 @@ uint16_t UpdateCRC16(uint16_t crcIn, uint8_t byte)
  return crc&0xffffu;
 }
 
-
-/**
-  * @brief  Cal CRC16 for YModem Packet
-  * @param  data
-  * @param  length
-   * @retval None
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 uint16_t Cal_CRC16(const uint8_t* data, uint32_t size)
 {
  uint32_t crc = 0;
@@ -424,13 +422,13 @@ uint16_t Cal_CRC16(const uint8_t* data, uint32_t size)
  crc = UpdateCRC16(crc,0);
  return crc&0xffffu;
 }
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：Cal Check sum for YModem Packet
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 
-/**
-  * @brief  Cal Check sum for YModem Packet
-  * @param  data
-  * @param  length
-   * @retval None
-  */
 uint8_t CalChecksum(const uint8_t* data, uint32_t size)
 {
  uint32_t sum = 0;
@@ -440,12 +438,12 @@ uint8_t CalChecksum(const uint8_t* data, uint32_t size)
  return sum&0xffu;
 }
 
-/**
-  * @brief  Transmit a data packet using the ymodem protocol
-  * @param  data
-  * @param  length
-   * @retval None
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 void Ymodem_SendPacket(uint8_t *data, uint16_t length)
 {
   uint16_t i;
@@ -457,11 +455,12 @@ void Ymodem_SendPacket(uint8_t *data, uint16_t length)
   }
 }
 
-/**
-  * @brief  Transmit a file using the ymodem protocol
-  * @param  buf: Address of the first byte
-  * @retval The size of the file
-  */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 uint8_t Ymodem_Transmit (uint8_t *buf, const uint8_t* sendFileName, uint32_t sizeFile)
 {
 

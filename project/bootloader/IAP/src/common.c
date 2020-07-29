@@ -1,25 +1,23 @@
+/******************************************************************************
+****版本：1.0.0
+****平台：
+****日期：2020-07-29
+****作者：Qitas
+****版权：
+*******************************************************************************/
+
 /* Includes ------------------------------------------------------------------*/
 #include "common.h"
 #include <string.h>
 #include <stdlib.h>
 
 #ifdef USE_FULL_ASSERT
-/**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
+
 void assert_failed(uint8_t* file, uint32_t line)
 {
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-
-  /* Infinite loop */
-  while (1)
-  {
-  }
+	while (1)
+	{
+	}
 }
 #endif
 
@@ -33,6 +31,7 @@ void assert_failed(uint8_t* file, uint32_t line)
   *   contains the configuration information for the specified USART peripheral.
   * @retval None
   */
+
 void STM_EVAL_COMInit(USART_InitTypeDef* USART_InitStruct)
 {
   GPIO_InitTypeDef GPIO_InitStructure;
@@ -394,4 +393,5 @@ void Delay_ms( uint16_t time_ms )
 		for( j=0;j<4784;j++ );
   }
 }
-/*******************(C)COPYRIGHT 2010 STMicroelectronics *****END OF FILE******/
+
+/*-------------------------(C) COPYRIGHT 2020 QITAS --------------------------*/

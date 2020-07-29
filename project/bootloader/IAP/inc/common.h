@@ -67,4 +67,4 @@ extern void Delay_ms( uint16_t time_ms );
 extern void assert_failed(uint8_t* file, uint32_t line);
 #endif  /* _COMMON_H */
 
-/*******************(C)COPYRIGHT 2010 STMicroelectronics *****END OF FILE******/
+/*-------------------------(C) COPYRIGHT 2020 QITAS --------------------------*/
