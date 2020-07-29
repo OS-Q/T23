@@ -84,6 +84,7 @@ void IAP_Handle(u8 * cmd)
 	else if(strcmp((char *)cmd, "runapp") == 0)//reset
 	{
 		NVIC_SystemReset();
+		// HAL_NVIC_SystemReset();
 	}
 	else
 	{

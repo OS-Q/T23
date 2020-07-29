@@ -66,6 +66,21 @@ void IAP_Init(void)
 **输入参数 ：无
 **输出参数 ：无
 *******************************************************************************/
+void iap_reset(void)
+{
+#if (USE_HAL_LIBS_FLAG == 1)
+	HAL_NVIC_SystemReset();
+#else
+	NVIC_SystemReset();
+#endif
+}
+
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 void IAP_Handle(u8 *mark,u8 * cmd)
 {
 	if(mark[0]&0x80)
@@ -74,26 +89,26 @@ void IAP_Handle(u8 *mark,u8 * cmd)
 		if(strcmp((char *)cmd, "update") == 0)
 		{
 			IAP_WriteFlag(UPDATE_FLAG_DATA);
-			NVIC_SystemReset();
+			iap_reset();
 		}
 		else if(strcmp((char *)cmd, "erase") == 0)
 		{
 			IAP_WriteFlag(ERASE_FLAG_DATA);
-			NVIC_SystemReset();
+			iap_reset();
 		}
 		else if(strcmp((char *)cmd, "menu") == 0)
 		{
 			IAP_WriteFlag(INIT_FLAG_DATA);
-			NVIC_SystemReset();
+			iap_reset();
 		}
 		else if(strcmp((char *)cmd, "runapp") == 0)//reset
 		{
-			NVIC_SystemReset();
+			iap_reset();
 		}
 		else
 		{
 			printf("指令有误\r\n");
-			NVIC_SystemReset();
+			iap_reset();
 		}
 	}
 }

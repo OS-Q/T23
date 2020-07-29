@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    IAP/inc/ymodem.h 
+  * @file    IAP/inc/ymodem.h
   * @author  MCD Application Team
   * @version V3.3.0
   * @date    10/15/2010
-  * @brief   This file provides all the software function headers of the ymodem.c 
+  * @brief   This file provides all the software function headers of the ymodem.c
   *          file.
   ******************************************************************************
   * @copy
@@ -81,4 +81,3 @@ uint8_t Ymodem_Transmit (uint8_t *,const  uint8_t* , uint32_t );
 
 #endif  /* _YMODEM_H_ */
 
-/*******************(C)COPYRIGHT 2010 STMicroelectronics *****END OF FILE****/
