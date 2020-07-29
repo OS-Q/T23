@@ -22,7 +22,7 @@ int main(void)
 	LED_Init();
 	while(1)
 	{
-		// IAP_Handle(&USART_RX_STA,USART_RX_BUF);
+		IAP_Handle(&USART_RX_STA,USART_RX_BUF);
 		times++;
 		delay_ms(10);
 		if(times%30==0){

@@ -28,13 +28,12 @@ void IAP_WriteFlag(uint16_t flag)
 	FLASH_Lock();
 #endif
 }
-
-/*******************************************************************************
+/***************************************************************************************
 **函数信息 ：
 **功能描述 ：
 **输入参数 ：无
 **输出参数 ：无
-*******************************************************************************
+****************************************************************************************/
 uint16_t IAP_ReadFlag(void)
 {
 #if (USE_BKP_SAVE_FLAG == 1)
@@ -43,6 +42,7 @@ uint16_t IAP_ReadFlag(void)
 	return STMFLASH_ReadHalfWord(IAP_FLAG_ADDR);
 #endif
 }
+
 
 /***************************************************************************************
 **函数信息 ：
@@ -53,11 +53,9 @@ uint16_t IAP_ReadFlag(void)
 void IAP_Init(void)
 {
 #if (USE_BKP_SAVE_FLAG == 1)
-	RCC->APB1ENR |= (RCC_APB1ENR_PWREN | RCC_APB1ENR_BKPEN);
-//	RCC_APB1PeriphClockCmd(RCC_APB1ENR_PWREN | RCC_APB1ENR_BKPEN , ENABLE);
+	RCC->APB1ENR |= (RCC_APB1ENR_PWREN | RCC_APB1ENR_BKPEN );
 #endif
 	SCB->VTOR = STM32_FLASH_BASE | IAP_FLASH_SIZE;
-//	NVIC_SetVectorTable(STM32_FLASH_BASE, IAP_FLASH_SIZE);
 }
 /***************************************************************************************
 **函数信息 ：
