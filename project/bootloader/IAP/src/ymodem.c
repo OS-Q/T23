@@ -43,7 +43,7 @@ static  int32_t Receive_Byte (uint8_t *c, uint32_t timeout)
   return -1;
 }
 
-/*******************************************************************************
+/******************************************************************************
 **函数信息 ：
 **功能描述 ：
 **输入参数 ：无
@@ -55,18 +55,12 @@ static uint32_t Send_Byte (uint8_t c)
   return 0;
 }
 
-/**
-  * @brief  Receive a packet from sender
-  * @param  data
-  * @param  length
-  * @param  timeout
-  *     0: end of transmission
-  *    -1: abort by sender
-  *    >0: packet length
-  * @retval 0: normally return
-  *        -1: timeout or packet error
-  *         1: abort by user
-  */
+/******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
 static int32_t Receive_Packet (uint8_t *data, int32_t *length, uint32_t timeout)
 {
   uint16_t i, packet_size;
@@ -147,14 +141,12 @@ static int32_t Receive_Packet (uint8_t *data, int32_t *length, uint32_t timeout)
 **输入参数 ：无
 **输出参数 ：无
 *******************************************************************************/
-int32_t Ymodem_Receive (uint8_t *buf)
+int32_t Ymodem_Receive(uint8_t *buf)
 {
   uint8_t packet_data[PACKET_1KB_SIZE + PACKET_OVERHEAD], file_size[FILE_SIZE_LENGTH], *file_ptr, *buf_ptr;
   int32_t i, j, packet_length, session_done, file_done, packets_received, errors, session_begin, size = 0;
-
   /* Initialize FlashDestination variable */
   FlashDestination = ApplicationAddress;
-
   Send_Byte(CRC16);
   for (session_done = 0, errors = 0, session_begin = 0; ;)
   {
@@ -162,8 +154,7 @@ int32_t Ymodem_Receive (uint8_t *buf)
     {
       switch (Receive_Packet(packet_data, &packet_length, NAK_TIMEOUT))
       {
-        case 0://成功收到数据
-		  //
+        case 0: //成功收到数据
           errors = 0;
           switch (packet_length)
           {
@@ -225,51 +216,51 @@ int32_t Ymodem_Receive (uint8_t *buf)
                       return -1;
 						//Erase failed
 					}
-                    Send_Byte(ACK);
-                    Send_Byte(CRC16);
-                  }
-                  /* Filename packet is empty, end session */
-                  else
-                  {
-                    Send_Byte(ACK);
-                    file_done = 1;
-                    session_done = 1;
-                    break;
-                  }
-                }
-                /* Data packet */
-                else//文件信息保存完之后开始接收数据
-                {
-                  memcpy(buf_ptr, packet_data + PACKET_HEADER, packet_length);
-                  RamSource = (uint32_t)buf;
-                  for (j = 0;(j < packet_length) && (FlashDestination <  ApplicationAddress + size);j += 4)
-                  {
-                    /* Program the data received into STM32F10x Flash */
-					FLASH_Unlock();
-                    FLASH_ProgramWord(FlashDestination, *(uint32_t*)RamSource);
-					FLASH_Lock();
-                    if (*(uint32_t*)FlashDestination != *(uint32_t*)RamSource)
-                    {
-                      /* End session */
-                      Send_Byte(CA);
-                      Send_Byte(CA);
-                      return -2;
-                    }
-                    FlashDestination += 4;
-                    RamSource += 4;
-                  }
-                  Send_Byte(ACK);
-                }
-                packets_received ++;
-                session_begin = 1;
-              }
+          Send_Byte(ACK);
+          Send_Byte(CRC16);
+          }
+          /* Filename packet is empty, end session */
+          else
+          {
+            Send_Byte(ACK);
+            file_done = 1;
+            session_done = 1;
+            break;
+          }
+        }
+        /* Data packet */
+        else//文件信息保存完之后开始接收数据
+        {
+          memcpy(buf_ptr, packet_data + PACKET_HEADER, packet_length);
+          RamSource = (uint32_t)buf;
+          for (j = 0;(j < packet_length) && (FlashDestination <  ApplicationAddress + size);j += 4)
+          {
+            /* Program the data received into STM32F10x Flash */
+            FLASH_Unlock();
+            FLASH_ProgramWord(FlashDestination, *(uint32_t*)RamSource);
+            FLASH_Lock();
+            if (*(uint32_t*)FlashDestination != *(uint32_t*)RamSource)
+            {
+              /* End session */
+              Send_Byte(CA);
+              Send_Byte(CA);
+              return -2;
+            }
+            FlashDestination += 4;
+            RamSource += 4;
+          }
+          Send_Byte(ACK);
+        }
+        packets_received ++;
+        session_begin = 1;
+      }
           }
           break;
-        case 1://用户按下了'a'或'A'
+        case 1: //用户按下了'a'或'A'
           Send_Byte(CA);
           Send_Byte(CA);
           return -3;
-        default://检查错误
+        default:  //检查错误
           if (session_begin > 0)
           {
             errors ++;
@@ -326,7 +317,7 @@ void Ymodem_PrepareIntialPacket(uint8_t *data, const uint8_t* fileName, uint32_t
   /* Filename packet has valid data */
   for (i = 0; (fileName[i] != '\0') && (i < FILE_NAME_LENGTH);i++)
   {
-     data[i + PACKET_HEADER] = fileName[i];
+    data[i + PACKET_HEADER] = fileName[i];
   }
 
   data[i + PACKET_HEADER] = 0x00;
@@ -334,7 +325,7 @@ void Ymodem_PrepareIntialPacket(uint8_t *data, const uint8_t* fileName, uint32_t
   Int2Str (file_ptr, *length);
   for (j =0, i = i + PACKET_HEADER + 1; file_ptr[j] != '\0' ; )
   {
-     data[i++] = file_ptr[j++];
+    data[i++] = file_ptr[j++];
   }
 
   for (j = i; j < PACKET_128B_SIZE + PACKET_HEADER; j++)
@@ -459,7 +450,7 @@ void Ymodem_SendPacket(uint8_t *data, uint16_t length)
 **输入参数 ：无
 **输出参数 ：无
 *******************************************************************************/
-uint8_t Ymodem_Transmit (uint8_t *buf, const uint8_t* sendFileName, uint32_t sizeFile)
+uint8_t Ymodem_Transmit(uint8_t *buf, const uint8_t* sendFileName, uint32_t sizeFile)
 {
 
   uint8_t packet_data[PACKET_1KB_SIZE + PACKET_OVERHEAD];
@@ -467,19 +458,15 @@ uint8_t Ymodem_Transmit (uint8_t *buf, const uint8_t* sendFileName, uint32_t siz
   uint8_t *buf_ptr, tempCheckSum ;
   uint16_t tempCRC, blkNumber;
   uint8_t receivedC[2], CRC16_F = 0, i;
-  uint32_t errors, ackReceived, size = 0, pktSize;
+  uint32_t errors= 0, ackReceived= 0, size = 0, pktSize;
 
-  errors = 0;
-  ackReceived = 0;
   for (i = 0; i < (FILE_NAME_LENGTH - 1); i++)
   {
     FileName[i] = sendFileName[i];
   }
   CRC16_F = 1;
-
   /* Prepare first block */
   Ymodem_PrepareIntialPacket(&packet_data[0], FileName, &sizeFile);
-
   do
   {
     /* Send Packet */
@@ -520,9 +507,6 @@ uint8_t Ymodem_Transmit (uint8_t *buf, const uint8_t* sendFileName, uint32_t siz
   size = sizeFile;
   blkNumber = 0x01;
   /* Here 1024 bytes package is used to send the packets */
-
-
-  /* Resend packet if NAK  for a count of 10 else end of commuincation */
   while (size)
   {
     /* Prepare next packet */
@@ -556,23 +540,22 @@ uint8_t Ymodem_Transmit (uint8_t *buf, const uint8_t* sendFileName, uint32_t siz
         tempCheckSum = CalChecksum (&packet_data[3], pktSize);
         Send_Byte(tempCheckSum);
       }
-
       /* Wait for Ack */
       if ((Receive_Byte(&receivedC[0], 100000) == 0)  && (receivedC[0] == ACK))
       {
         ackReceived = 1;
         if (size > pktSize)
         {
-            buf_ptr += pktSize;
-            size -= pktSize;
-            if (blkNumber == (FLASH_IMAGE_SIZE/1024))
-            {
-              return 0xFF; /*  error */
-            }
-            else
-            {
-                blkNumber++;
-            }
+          buf_ptr += pktSize;
+          size -= pktSize;
+          if (blkNumber == (FLASH_IMAGE_SIZE/1024))
+          {
+            return 0xFF; /*  error */
+          }
+          else
+          {
+              blkNumber++;
+          }
         }
         else
         {
@@ -601,14 +584,14 @@ uint8_t Ymodem_Transmit (uint8_t *buf, const uint8_t* sendFileName, uint32_t siz
     Send_Byte(EOT);
     /* Send (EOT); */
     /* Wait for Ack */
-      if ((Receive_Byte(&receivedC[0], 10000) == 0)  && receivedC[0] == ACK)
-      {
-        ackReceived = 1;
-      }
-      else
-      {
-        errors++;
-      }
+    if ((Receive_Byte(&receivedC[0], 10000) == 0)  && receivedC[0] == ACK)
+    {
+      ackReceived = 1;
+    }
+    else
+    {
+      errors++;
+    }
   }while (!ackReceived && (errors < 0x0A));
 
   if (errors >=  0x0A)
@@ -665,15 +648,15 @@ uint8_t Ymodem_Transmit (uint8_t *buf, const uint8_t* sendFileName, uint32_t siz
     Send_Byte(EOT);
     /* Send (EOT); */
     /* Wait for Ack */
-      if ((Receive_Byte(&receivedC[0], 10000) == 0)  && receivedC[0] == ACK)
-      {
-        ackReceived = 1;
-      }
-      else
-      {
-        errors++;
-      }
-  }while (!ackReceived && (errors < 0x0A));
+    if ((Receive_Byte(&receivedC[0], 10000) == 0)  && receivedC[0] == ACK)
+    {
+      ackReceived = 1;
+    }
+    else
+    {
+      errors++;
+    }
+  }while(!ackReceived && (errors < 0x0A));
 
   if (errors >=  0x0A)
   {
