@@ -366,6 +366,40 @@ int8_t iap_erase(void)
 	else return -1;
 }
 
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：无
+**输出参数 ：无
+*******************************************************************************/
+int8_t iap_task(void)
+{
+	switch(iap_readflag())
+	{
+		case APPRUN_FLAG_DATA:
+			if(app_run()) iap_writeflag(INIT_FLAG_DATA);
+			break;
+		case INIT_FLAG_DATA:
+			iap_menu();
+			break;
+		case UPDATE_FLAG_DATA:
+			if(!iap_update()) iap_writeflag(APPRUN_FLAG_DATA);
+			else iap_writeflag(INIT_FLAG_DATA);
+			break;
+		case UPLOAD_FLAG_DATA:
+			if(!iap_upload()) iap_writeflag(APPRUN_FLAG_DATA);
+			else iap_writeflag(INIT_FLAG_DATA);
+			break;
+		case ERASE_FLAG_DATA:
+			iap_erase();
+			iap_writeflag(INIT_FLAG_DATA);
+			break;
+		default:
+			break;
+	}
+	return 0;
+}
+
 /*-------------------------(C) COPYRIGHT 2020 QITAS --------------------------*/
 
 

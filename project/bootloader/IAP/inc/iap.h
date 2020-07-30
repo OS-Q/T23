@@ -31,7 +31,7 @@ extern void iap_menu(void);
 extern int8_t iap_update(void);
 extern int8_t iap_upload(void);
 extern int8_t iap_erase(void);
-
+extern int8_t iap_task(void);
 
 #endif
 

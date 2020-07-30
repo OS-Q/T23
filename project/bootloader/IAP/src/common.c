@@ -64,11 +64,9 @@ void STM_EVAL_COMInit(USART_InitTypeDef* USART_InitStruct)
 void Int2Str(uint8_t* str, int32_t intnum)
 {
 	uint32_t i, Div = 1000000000, j = 0, Status = 0;
-
 	for (i = 0; i < 10; i++)
 	{
 		str[j++] = (intnum / Div) + 48;
-
 		intnum = intnum % Div;
 		Div /= 10;
 		if ((str[j-1] == '0') & (Status == 0))
