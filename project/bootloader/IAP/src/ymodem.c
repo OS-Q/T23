@@ -12,10 +12,6 @@
 #include "common.h"
 #include "stm32f10x_flash.h"
 
-/* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-/* Private macro -------------------------------------------------------------*/
-/* Private variables ---------------------------------------------------------*/
 uint8_t file_name[FILE_NAME_LENGTH];
 uint32_t FlashDestination = ApplicationAddress; /* Flash user program offset */
 uint16_t PageSize = PAGE_SIZE;
