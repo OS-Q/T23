@@ -729,5 +729,10 @@ namespace win_iap_ymodem
         {
 
         }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

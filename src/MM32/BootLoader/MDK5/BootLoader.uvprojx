@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Device\CMSIS\KEIL_CORE;..\..\Device\MM32F031x8\HAL_lib\inc;..\..\Device\MM32F031x8\Include;..\USER\inc;..\SYS\delay;..\SYS\sys;..\SYS\uart;..\BSP\UART_NVIC;..\BSP\TIM;..\BSP\PROTECT</IncludePath>
+              <IncludePath>..\..\Device\CMSIS\KEIL_CORE;..\..\Device\MM32F031x8\HAL_lib\inc;..\..\Device\MM32F031x8\Include;..\USER\inc;..\SYS\delay;..\SYS\sys;..\SYS\uart;..\BSP</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -448,19 +448,19 @@
           <GroupName>BSP</GroupName>
           <Files>
             <File>
-              <FileName>uart_nvic.c</FileName>
+              <FileName>protect.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BSP\UART_NVIC\uart_nvic.c</FilePath>
+              <FilePath>..\BSP\protect.c</FilePath>
             </File>
             <File>
               <FileName>tim3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BSP\TIM\tim3.c</FilePath>
+              <FilePath>..\BSP\tim3.c</FilePath>
             </File>
             <File>
-              <FileName>protect.c</FileName>
+              <FileName>uart_nvic.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BSP\PROTECT\protect.c</FilePath>
+              <FilePath>..\BSP\uart_nvic.c</FilePath>
             </File>
           </Files>
         </Group>
