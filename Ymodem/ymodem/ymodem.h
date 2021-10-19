@@ -18,12 +18,12 @@
  * Bytes 3-1026:    Data
  * Bytes 1027-1028: CRC
  */
- 
+
 /* 数据类型定义 */
 typedef unsigned          char y_uint8_t;
 typedef unsigned short     int y_uint16_t;
 typedef unsigned           int y_uint32_t;
- 
+
 /* 数据接收缓冲区大小(用户定义,至少要大于 3 + 1024 + 2) */
 #define Y_PROT_FRAME_LEN_RECV  1500u
 
@@ -33,7 +33,7 @@ typedef unsigned           int y_uint32_t;
 /* 检测超时错误配置 */
 /* 0：使用精确时间进行检测，需实现 y_uint32_t y_get_tick(void) 函数，
       该函数应返回毫秒时间戳，当然，也可以是其他值，不过需要调整 Y_RECEIVE_TIMEOUT 的值
-      
+
    1：使用循环减 Y_RECEIVE_TIMEOUT 到数值0的方法，不同频率的开发板可能会需要不同的数值*/
 #define TIMEOUT_CONFIG      1
 
@@ -79,7 +79,7 @@ typedef enum {
 } ymodem_status;
 
 #define Y_UNUSED(Y) (void)Y      /* To avoid gcc/g++ warnings */
-  
+
 /***************************** 对外函数 ***************************************/
 /* 用户调用 */
 y_uint16_t ymodem_receive(void);

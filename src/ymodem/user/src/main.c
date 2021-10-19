@@ -88,6 +88,7 @@ void USART_Config(USART_TypeDef* USARTx)
   /* Enable the USART1 */
   USART_Cmd(USART1, ENABLE);
 }
+
 /*******************************************************************************
 **函数信息 ：
 **功能描述 ：
